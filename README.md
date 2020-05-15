@@ -11,5 +11,5 @@ Firefox 76.0.1<br>
 <p>This tool comes without support. Feedback welcome!</p>
 
 Usage:<br>
-1 - copy the files index.html, rhel-for-sap-configurator.css, and rhel-for-sap-configurator.js to a local directory<br>
-2 - open index.html in your web browser. In Chrome, this can be done by using <ctrl>-o.
+1 - Copy the files index.html, rhel-for-sap-configurator.css, and rhel-for-sap-configurator.js to a local directory<br>
+2 - Open index.html in your web browser. In Chrome, this can be done by using <ctrl>-o.
