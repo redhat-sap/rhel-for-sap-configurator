@@ -11,5 +11,5 @@ Firefox 76.0.1<br>
 <p>This tool comes without support. Feedback welcome!</p>
 
 Usage:<br>
-Option 1 - Use https://redhat-sap.github.io/rhel-for-sap-configurator/
+Option 1 - Use https://redhat-sap.github.io/rhel-for-sap-configurator/<br>
 Option 2 - Download the files index.html, rhel-for-sap-configurator.css, and rhel-for-sap-configurator.js to a local directory. Then open file index.html in your web browser. In Chrome, this can be done by using &lt;ctrl&gt;-o.
