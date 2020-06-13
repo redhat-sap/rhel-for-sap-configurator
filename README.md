@@ -8,8 +8,9 @@ Chrome 81.0.4044.138<br>
 Firefox 76.0.1<br>
 </p>
 
-<p>This tool comes without support. You still have to check supported release combinations in the <a href="https://apps.support.sap.com/sap/support/pam">SAP PAM</a>, the SAP HANA hardware directory, and/or other applicable sources.<br>
-Feedback: Please open an issue on https://github.com/berndfinger/rhel-for-sap-configurator.</p>
+<p><b>Note: This tool comes without support.</b> You still have to check supported release combinations in the <a href="https://apps.support.sap.com/sap/support/pam">SAP PAM</a>, the SAP HANA hardware directory, and/or other applicable sources.<br>
+<b>Citation:</b> Please discuss any results you get from using this tool primarily by using the referenced documents.<br>
+<b>Feedback:</b> Please open an issue on https://github.com/berndfinger/rhel-for-sap-configurator.</p>
 
 Usage:<br>
 Option 1 - Use https://redhat-sap.github.io/rhel-for-sap-configurator/<br>
