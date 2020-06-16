@@ -18,6 +18,8 @@
 //       Sat 13 Jun 2020
 // v1.5.2: added required minimum RHEL kernel versions for SAP HANA to the "RHEL x.y:" line
 //       Sat 13 Jun 2020
+// v1.5.3: added cloud repo names
+//       Tue 16 Jun 2020
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -43,6 +45,12 @@ function displaySelections() {
     if(elem[i].checked) 
     document.getElementById("result4").innerHTML
 	= "HA: "+elem[i].value; 
+  } 
+  var elem = document.getElementsByName('cloudSelect'); 
+  for(i = 0; i < elem.length; i++) { 
+    if(elem[i].checked) 
+    document.getElementById("result5").innerHTML
+	= "Cloud: "+elem[i].value; 
   } 
 }
 
@@ -78,6 +86,10 @@ function displayResults() {
   for(i = 0; i < elem.length; i++) { 
     if(elem[i].checked) vHA=elem[i].value;
   } 
+  var elem = document.getElementsByName('cloudSelect'); 
+  for(i = 0; i < elem.length; i++) { 
+    if(elem[i].checked) vCloud=elem[i].value;
+  } 
 //   vArch=document.getElementById("archSelect").value;
 //   vRHEL=document.getElementById("rhelSelect").value;
 //   vHA=document.getElementById("haSelect").value;
@@ -86,6 +98,7 @@ function displayResults() {
    document.getElementById("titleRHEL").innerHTML = "RHEL:";
    document.getElementById("idRHEL").innerHTML = "";
    document.getElementById("titleRepos").innerHTML = "Repositories:";
+   document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
    document.getElementById("titleCommands").innerHTML = "Commands:";
    document.getElementById("id_ppc64le").disabled = false;
    document.getElementById("id_ppc64").disabled = false;
@@ -99,8 +112,10 @@ function displayResults() {
    document.getElementById("id_80").disabled = false;
    document.getElementById("id_81").disabled = false;
    document.getElementById("id_82").disabled = false;
+   document.getElementById("id_Cloud_on").disabled = false;
    if (vArch == "ppc64le") {
       document.getElementById("id_72").disabled = true;
+      document.getElementById("id_Cloud_on").disabled = true;
    }
    if (vSAP == "SAP HANA 1.0") {
       document.getElementById("id_ppc64").disabled = true;
@@ -111,7 +126,10 @@ function displayResults() {
       document.getElementById("id_81").disabled = true;
       document.getElementById("id_82").disabled = true;
       if (vRHELmajor == "6") {
+         document.getElementById("id_Cloud_on").disabled = true;
          document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
+         document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = 
+         "subscription-manager release --set=" + vRHEL;
          if (vRHEL == "6.5") {
             document.getElementById("idResources").innerHTML = 
 "<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" + 
@@ -183,12 +201,21 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2002167\">SAP note 2002167</a> - Red Hat Enterprise Linux 7.x: Installation and Upgrade" + "<br>" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2292690\">SAP note 2292690</a> - SAP HANA DB: Recommended OS settings for RHEL 7" + "<br>"
          document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
+         document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = 
+         "subscription-manager release --set=" + vRHEL;
+     	 if (vCloud == "no Cloud") {
+     	    _rhui=""
+     	 }
+     	 else {
+     	    _rhui="rhui-"
+     	 }
          if (vHA == "HA") {
 	    document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-            _haRepo = "<br>" + "rhel-ha-for-rhel-7-server-e4s-rpms" + "<br>";
-            _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-server-e4s-rpms" + "\"";
+	    _ha = _rhui + "rhel-ha-for-rhel-7-server-" + _rhui + "e4s-rpms";
+            _haRepo = "<br>" + _ha + "<br>";
+            _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
          }
 	 else {
 	    document.getElementById("idResources").innerHTML +=
@@ -196,14 +223,14 @@ function displayResults() {
 "<br>";
 	 }
          document.getElementById("idRepos").innerHTML = 
-           "rhel-7-server-e4s-rpms" + "<br>" +
-           "rhel-sap-hana-for-rhel-7-server-e4s-rpms" +
+           _rhui + "rhel-7-server-" + _rhui + "e4s-rpms" + "<br>" +
+           _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" +
            _haRepo +
            "<br><br>";
          document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
            "subscription-manager repos \\<br>" +
-           "--enable=\"" + "rhel-7-server-e4s-rpms" + "\" \\<br>" +
-           "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-e4s-rpms" + "\"" +
+           "--enable=\"" + _rhui + "rhel-7-server-" + _rhui + "e4s-rpms" + "\" \\<br>" +
+           "--enable=\"" + _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + "\"" +
            _haText;
      	 if (vRHEL == "7.2") {
      	    document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 SPS12</a>" + ".&nbsp;" +
@@ -228,6 +255,21 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.30</a>" + "<br>" +
 "HANA 1.0 SPS12: <b>gcc 4</b>.<br>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-862</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available; support for EUS ended April 30, 2020</a>";
+            if (vHA == "HA") {
+	       _ha = _rhui + "rhel-ha-for-rhel-7-server-" + _rhui + "eus-rpms";
+               _haRepo = "<br>" + _ha + "<br>";
+               _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
+            }
+            document.getElementById("idRepos").innerHTML = 
+              _rhui + "rhel-7-server-" + _rhui + "eus-rpms" + "<br>" +
+              _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "eus-rpms" +
+              _haRepo +
+              "<br><br>";
+            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
+              "subscription-manager repos \\<br>" +
+              "--enable=\"" + _rhui + "rhel-7-server-" + _rhui + "eus-rpms" + "\" \\<br>" +
+              "--enable=\"" + _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "eus-rpms" + "\"" +
+              _haText;
      	 }
          else if (vRHEL == "7.6") {
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 SPS12 rev 122.23 and newer</a>" + ".&nbsp;" +
@@ -306,6 +348,12 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2292690\">SAP note 2292690</a> - SAP HANA DB: Recommended OS settings for RHEL 7" + "<br>";
             document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
             document.getElementById("idRHEL").innerHTML = "E4S available";
+     	    if (vCloud == "no Cloud") {
+     	       _rhui=""
+     	    }
+     	    else {
+     	       _rhui="rhui-"
+     	    }
             if (vArch == "x86_64") {
                if (vRHEL == "7.2") {
                   document.getElementById("id_ppc64le").disabled = true;
@@ -341,11 +389,12 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available; support ends October 31, 2022</a>";
                }
                if (vHA == "HA") {
-                  _haRepo = "<br>" + "rhel-ha-for-rhel-7-server-e4s-rpms" + "<br>";
-                  _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-server-e4s-rpms" + "\"";
 		  document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
+                  _ha = _rhui + "rhel-ha-for-rhel-7-server-" + _rhui + "e4s-rpms"
+		  _haRepo = "<br>" + _ha + "<br>";
+                  _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
                }
 	       else {
 	          document.getElementById("idResources").innerHTML +=
@@ -353,14 +402,14 @@ function displayResults() {
 "<br>";
 	       }
                document.getElementById("idRepos").innerHTML = 
-                 "rhel-7-server-e4s-rpms" + "<br>" +
-                 "rhel-sap-hana-for-rhel-7-server-e4s-rpms" +
+                 _rhui + "rhel-7-server-" + _rhui + "e4s-rpms" + "<br>" +
+                 _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" +
                  _haRepo +
                  "<br><br>";
                document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
                  "subscription-manager repos \\<br>" +
-                 "--enable=\"" + "rhel-7-server-e4s-rpms" + "\" \\<br>" +
-                 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-e4s-rpms" + "\"" +
+                 "--enable=\"" + _rhui + "rhel-7-server-" + _rhui + "e4s-rpms" + "\" \\<br>" +
+                 "--enable=\"" + _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + "\"" +
                  _haText;
             }
             else if (vArch == "ppc64le") {
@@ -415,7 +464,6 @@ function displayResults() {
                   }
 	          else {
 	             document.getElementById("idResources").innerHTML +=
-"<br>" +
 "<br>";
 	          }
                   document.getElementById("idRepos").innerHTML = 
@@ -442,12 +490,20 @@ function displayResults() {
                document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS03 only, starting with rev 32</a>" + ".&nbsp;" + 
 "<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS03 rev 37.05</a>" + "<br>" +
 "HANA 2.0 SPS03: <b>gcc 6</b>.<br>";
+     	       if (vCloud == "no Cloud") {
+     	    	  _rhui1=""
+     	    	  _rhui2=""
+     	       }
+     	       else {
+     	    	  _rhui1="rhui-"
+     	    	  _rhui2="-rhui-eus"
+     	       }
                if (vHA == "HA") {
 		  document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-                  _haRepo = "<br>" + "rhel-ha-for-rhel-7-server-rpms" + "<br>";
-                  _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-server-rpms" + "\"";
+                  _haRepo = "<br>" + _rhui1 + "rhel-ha-for-rhel-7-server" + _rhui2 + "-rpms" + "<br>";
+                  _haText = " \\<br>" + "--enable=\"" + _rhui1 + "rhel-ha-for-rhel-7-server" + _rhui2 + "-rpms" + "\"";
                }
 	       else {
 	          document.getElementById("idResources").innerHTML +=
@@ -455,14 +511,14 @@ function displayResults() {
 "<br>";
 	       }
                document.getElementById("idRepos").innerHTML = 
-                 "rhel-7-server-rpms" + "<br>" +
-                 "rhel-sap-hana-for-rhel-7-server-rpms" +
+                 _rhui1 + "rhel-7-server" + _rhui2 + "-rpms" + "<br>" +
+                 _rhui1 + "rhel-sap-hana-for-rhel-7-server" + _rhui2 + "-rpms" +
                  _haRepo +
                  "<br><br>";
                document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
                  "subscription-manager repos \\<br>" +
-                 "--enable=\"" + "rhel-7-server-rpms" + "\" \\<br>" +
-                 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-rpms" + "\"" +
+                 "--enable=\"" + _rhui1 + "rhel-7-server" + _rhui2 + "-rpms" + "\" \\<br>" +
+                 "--enable=\"" + _rhui1 + "rhel-sap-hana-for-rhel-7-server" + _rhui2 + "-rpms" + "\"" +
                  _haText;
             }
             else if (vArch == "ppc64le") {
@@ -527,6 +583,10 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2777782\">SAP note 2777782</a> - SAP HANA DB: Recommended OS settings for RHEL 8" + "<br>";
             document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
             document.getElementById("id_ppc64").disabled = true;
+            _baseos="-baseos";
+            _appstream="-appstream";
+            _sap_solutions="-sap-solutions";
+            _sap_netweaver="-sap-netweaver";
             if (vArch == "x86_64") {
                if (vRHEL == "8.0") {
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS04 rev 40 and newer</a>" + ".&nbsp;" +
@@ -544,30 +604,38 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2777782\">Minimum required: 4.18.0-147.5.1.el8_1</a>. " +
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available; support ends November 30, 2023</a>";
                }
+               if (vCloud == "no Cloud") {
+	          _rhui=""
+               }
+               else {
+	          _rhui="-rhui"
+               }
                if (vHA == "HA") {
 		  document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-                  _haRepo = "<br>" + "rhel-8-for-x86_64-highavailability-e4s-rpms" + "<br>";
-                  _haText = " \\<br>" + "--enable=\"" + "rhel-8-for-x86_64-highavailability-e4s-rpms" + "\"";
+        	  _ha = "rhel-8-for-" + vArch + "-highavailability-e4s" + _rhui + "-rpms";
+	   	  _haRepo = "<br>" + _ha + "<br>";
+	   	  _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
                }
 	       else {
 	          document.getElementById("idResources").innerHTML += "<br>" +
 "<br>";
 	       }
                document.getElementById("idRepos").innerHTML = 
-                 "rhel-8-for-x86_64-baseos-e4s-rpms" + "<br>" +
-                 "rhel-8-for-x86_64-appstream-e4s-rpms" + "<br>" +
-                 "rhel-8-for-x86_64-sap-solutions-e4s-rpms" + "<br>" +
-                 "rhel-8-for-x86_64-sap-netweaver-e4s-rpms" +
+                 "rhel-8-for-" + vArch + _baseos + "-e4s" + _rhui + "-rpms" + "<br>" +
+                 "rhel-8-for-" + vArch + _appstream + "-e4s" + _rhui + "-rpms" + "<br>" +
+                 "rhel-8-for-" + vArch + _sap_solutions + "-e4s" + _rhui + "-rpms" + "<br>" +
+                 "rhel-8-for-" + vArch + _sap_netweaver + "-e4s" + _rhui + "-rpms" +
                  _haRepo;
                document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
                  "subscription-manager repos \\<br>" +
-                 "--enable=\"" + "rhel-8-for-x86_64-baseos-e4s-rpms" + "\" \\<br>" +
-                 "--enable=\"" + "rhel-8-for-x86_64-appstream-e4s-rpms" + "\" \\<br>" +
-                 "--enable=\"" + "rhel-8-for-x86_64-sap-solutions-e4s-rpms" + "\" \\<br>" +
-                 "--enable=\"" + "rhel-8-for-x86_64-sap-netweaver-e4s-rpms" + "\"" +
+                 "--enable=\"" + "rhel-8-for-" + vArch + _baseos + "-e4s" + _rhui + "-rpms" + "\" \\<br>" +
+                 "--enable=\"" + "rhel-8-for-" + vArch + _appstream + "-e4s" + _rhui + "-rpms" + "\" \\<br>" +
+                 "--enable=\"" + "rhel-8-for-" + vArch + _sap_solutions + "-e4s" + _rhui + "-rpms" + "\" \\<br>" +
+                 "--enable=\"" + "rhel-8-for-" + vArch + _sap_netweaver + "-e4s" + _rhui + "-rpms" + "\"" +
                  _haText;
+               
             }
             else if (vArch == "ppc64le") {
                document.getElementById("idResources").innerHTML = 
@@ -635,6 +703,7 @@ function displayResults() {
       document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "(no need to run \"subscription-manager release --set=X.X\" for " + vSAP + ")";
       document.getElementById("id_ppc64le").disabled = false;
       if (vRHELmajor == "6") {
+         document.getElementById("id_Cloud_on").disabled = true;
          document.getElementById("idResources").innerHTML = 
 "<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" + 
 "<a href=\"https://launchpad.support.sap.com/#/notes/1496410\">SAP note 1496410</a> - Red Hat Enterprise Linux 6.x: Installation and Upgrade" + "<br>";
@@ -760,33 +829,45 @@ function displayResults() {
          else if (vRHEL == "7.8") {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1127</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Maintenance_Support_2_Phase\">E4S and EUS not available; support ends at RHEL 7.9 release date, 3QCY20</a>";
          }
-         if (vHA == "HA") {
-	    document.getElementById("idResources").innerHTML +=
+         if (vCloud == "no Cloud") {
+	    _rhui=""
+	    _rhui1=""
+	    _rhui2=""
+         }
+         else {
+	    _rhui="rhui-"
+	    _rhui1="rhui-"
+	    _rhui2="rhui-eus-"
+         }
+         if (vArch == "x86_64") {
+            if (vHA == "HA") {
+	       document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>" +
 "<br>";
-            _ha = "rhel-ha-for-rhel-7-" + vArch7 + "-rpms";
-	    _haRepo = "<br>" + _ha + "<br>";
-	    _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
-         }
-	 else {
-	    document.getElementById("idResources").innerHTML += "<br>" +
+               _ha = _rhui + "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui2 + "rpms";
+	       _haRepo = "<br>" + _ha + "<br>";
+	       _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
+            }
+	    else {
+	       document.getElementById("idResources").innerHTML += "<br>" +
 "<br>" +
 "<br>";
-	 }
-         if (vArch == "x86_64") {
+	    }
             document.getElementById("idRepos").innerHTML = 
-              "rhel-7-server-rpms" + "<br>" +
-              "rhel-sap-for-rhel-7-server-rpms" +
+              _rhui1 + "rhel-7-server-" + _rhui2 + "rpms" + "<br>" +
+              _rhui1 + "rhel-sap-for-rhel-7-server-" + _rhui2 + "rpms" +
               _haRepo +
               "<br><br>";
             document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
               "subscription-manager repos \\<br>" +
-              "--enable=\"" + "rhel-7-server-rpms" + "\" \\<br>" +
-              "--enable=\"" + "rhel-sap-for-rhel-7-server-rpms" + "\"" +
+              "--enable=\"" + _rhui1 + "rhel-7-server-" + _rhui2 + "rpms" + "\" \\<br>" +
+              "--enable=\"" + _rhui1 + "rhel-sap-for-rhel-7-server-" + _rhui2 + "rpms" + "\"" +
               _haText;
          }
          else if (vArch == "ppc64le") {
+            document.getElementById("id_Cloud_on").disabled = true;
+	    _rhui=""
             if (vRHEL == "7.2") {
                document.getElementById("id_ppc64le").disabled = true;
                document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2002167\">NetWeaver is not supported for RHEL " + vRHEL + " on " + vArch + "</a>" + "<br><br>";
@@ -799,8 +880,22 @@ function displayResults() {
      	       document.getElementById("idRepos").innerHTML = "";
      	       document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
      	       document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
-           }
-           else {
+            }
+            else {
+               if (vHA == "HA") {
+	          document.getElementById("idResources").innerHTML +=
+"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+"<br>" +
+"<br>";
+                  _ha = _rhui + "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
+	          _haRepo = "<br>" + _ha + "<br>";
+	          _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
+               }
+	       else {
+	          document.getElementById("idResources").innerHTML += "<br>" +
+"<br>" +
+"<br>";
+	       }
                document.getElementById("idRepos").innerHTML = 
                  "rhel-7-for-power-le-rpms" + "<br>" +
                  "rhel-sap-for-rhel-7-for-power-le-rpms" +
@@ -808,33 +903,65 @@ function displayResults() {
                  "<br><br>";
                document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
                  "subscription-manager repos \\<br>" +
-                 "--enable=\"" + "rhel-7-for-power-le-rpms" + "\"  \\<br>" +
-                 "--enable=\"" + "rhel-sap-for-rhel-7-for-power-le-rpms" + "\"" +
+                 "--enable=\"" + "rhel-7-" + vArch7 + "-rpms" + "\"  \\<br>" +
+                 "--enable=\"" + "rhel-sap-for-rhel-7-" + vArch7 + "-rpms" + "\"" +
                  _haText;
             }
          }
          else if (vArch == "ppc64") {
+            document.getElementById("id_Cloud_on").disabled = true;
+	    _rhui=""
+            if (vHA == "HA") {
+	       document.getElementById("idResources").innerHTML +=
+"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+"<br>" +
+"<br>";
+               _ha = _rhui + "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
+	       _haRepo = "<br>" + _ha + "<br>";
+	       _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
+            }
+	    else {
+	       document.getElementById("idResources").innerHTML += "<br>" +
+"<br>" +
+"<br>";
+	    }
             document.getElementById("idRepos").innerHTML = 
-              "rhel-7-for-power-rpms" + "<br>" +
-              "rhel-sap-for-rhel-7-for-power-rpms" +
+              "rhel-7-" + vArch7 + "-rpms" + "<br>" +
+              "rhel-sap-for-rhel-7-" + vArch7 + "-rpms" +
               _haRepo +
               "<br><br>";
             document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
               "subscription-manager repos \\<br>" +
-              "--enable=\"" + "rhel-7-for-power-rpms" + "\"  \\<br>" +
-              "--enable=\"" + "rhel-sap-for-rhel-7-for-power-rpms" + "\"" +
+              "--enable=\"" + "rhel-7-" + vArch7 + "-rpms" + "\"  \\<br>" +
+              "--enable=\"" + "rhel-sap-for-rhel-7-" + vArch7 + "-rpms" + "\"" +
               _haText;
          }
          else if (vArch == "s390x") {
+            document.getElementById("id_Cloud_on").disabled = true;
+	    _rhui=""
+            if (vHA == "HA") {
+	       document.getElementById("idResources").innerHTML +=
+"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+"<br>" +
+"<br>";
+               _ha = _rhui + "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
+	       _haRepo = "<br>" + _ha + "<br>";
+	       _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
+            }
+	    else {
+	       document.getElementById("idResources").innerHTML += "<br>" +
+"<br>" +
+"<br>";
+	    }
             document.getElementById("idRepos").innerHTML = 
-              "rhel-7-for-system-z-rpms" + "<br>" +
-              "rhel-sap-for-rhel-7-for-system-z-rpms" +
+              "rhel-7-" + vArch7 + "-rpms" + "<br>" +
+              "rhel-sap-for-rhel-7-" + vArch7 + "-rpms" +
               _haRepo +
               "<br><br>";
             document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
               "subscription-manager repos \\<br>" +
-              "--enable=\"" + "rhel-7-for-system-z-rpms" + "\"  \\<br>" +
-              "--enable=\"" + "rhel-sap-for-rhel-7-for-system-z-rpms" + "\"" +
+              "--enable=\"" + "rhel-7-" + vArch7 + "-rpms" + "\"  \\<br>" +
+              "--enable=\"" + "rhel-sap-for-rhel-7-" + vArch7 + "-rpms" + "\"" +
               _haText;
          }
       }
@@ -851,51 +978,22 @@ function displayResults() {
          else if (vRHEL == "8.2") {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-193</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S not required; support for EUS ends April 30, 2022; support for E4S ends April 30, 2024</a>";
          }
-         if (vHA == "HA") {
-	    document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
-"<br>" +
-"<br>" +
-"<br>";
-            _ha = "rhel-8-for-" + vArch + "-highavailability-rpms";
-	    _haRepo = "<br>" + _ha + "<br>";
-	    _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
+         _baseos="-baseos";
+         _appstream="-appstream";
+         _sap_netweaver="-sap-netweaver";
+         if (vCloud == "no Cloud") {
+	    _rhui=""
          }
-	 else {
-	    document.getElementById("idResources").innerHTML += "<br>" +
-"<br>" +
-"<br>" +
-"<br>";
-	 }
-         if (vArch == "x86_64") {
-            document.getElementById("idRepos").innerHTML = 
-              "rhel-8-for-x86_64-baseos-rpms" + "<br>" +
-              "rhel-8-for-x86_64-appstream-rpms" + "<br>" +
-              "rhel-8-for-x86_64-sap-netweaver-rpms" +
-              _haRepo +
-              "<br>";
-            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
-              "subscription-manager repos \\<br>" +
-              "--enable=\"" + "rhel-8-for-x86_64-baseos-rpms" + "\" \\<br>" +
-              "--enable=\"" + "rhel-8-for-x86_64-appstream-rpms" + "\" \\<br>" +
-              "--enable=\"" + "rhel-8-for-x86_64-sap-netweaver-rpms" + "\"" +
-              _haText;
+         else {
+	    _rhui="-eus-rhui"
          }
-         else if (vArch == "ppc64le") {
-            document.getElementById("idRepos").innerHTML = 
-              "rhel-8-for-ppc64le-baseos-rpms" + "<br>" +
-              "rhel-8-for-ppc64le-appstream-rpms" + "<br>" +
-              "rhel-8-for-ppc64le-sap-netweaver-rpms" +
-              _haRepo +
-              "<br>";
-            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
-              "subscription-manager repos \\<br>" +
-              "--enable=\"" + "rhel-8-for-ppc64le-baseos-rpms" + "\" \\<br>" +
-              "--enable=\"" + "rhel-8-for-ppc64le-appstream-rpms" + "\" \\<br>" +
-              "--enable=\"" + "rhel-8-for-ppc64le-sap-netweaver-rpms" + "\"" +
-              _haText;
+         if (vArch == "ppc64le") {
+            document.getElementById("id_Cloud_on").disabled = true;
+	    _rhui=""
          }
          else if (vArch == "ppc64") {
+            document.getElementById("id_Cloud_on").disabled = true;
+	    _rhui=""
      	    document.getElementById("titleRepos").innerHTML = "RHEL " + vRHELmajor + " is not supported on " + vArch + ".";
      	    document.getElementById("titleCommands").innerHTML = "";
      	    document.getElementById("idRepos").innerHTML = "";
@@ -903,19 +1001,37 @@ function displayResults() {
      	    document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
          }
          else if (vArch == "s390x") {
-            document.getElementById("idRepos").innerHTML = 
-              "rhel-8-for-s390x-baseos-rpms" + "<br>" +
-              "rhel-8-for-s390x-appstream-rpms" + "<br>" +
-              "rhel-8-for-s390x-sap-netweaver-rpms" +
-              _haRepo +
-              "<br>";
-            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
-              "subscription-manager repos \\<br>" +
-              "--enable=\"" + "rhel-8-for-s390x-baseos-rpms" + "\" \\<br>" +
-              "--enable=\"" + "rhel-8-for-s390x-appstream-rpms" + "\" \\<br>" +
-              "--enable=\"" + "rhel-8-for-s390x-sap-netweaver-rpms" + "\"" +
-              _haText;
+            document.getElementById("id_Cloud_on").disabled = true;
+	    _rhui=""
      	 }
+         if (vHA == "HA") {
+	    document.getElementById("idResources").innerHTML +=
+"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+"<br>" +
+"<br>" +
+"<br>";
+            _ha = "rhel-8-for-" + vArch + "-highavailability" + _rhui + "-rpms";
+	    _haRepo = "<br>" + _ha + "<br>";
+	    _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
+         }
+         else {
+            document.getElementById("idResources").innerHTML += "<br>" +
+"<br>" +
+"<br>" +
+"<br>";
+	 }
+         document.getElementById("idRepos").innerHTML = 
+           "rhel-8-for-" + vArch + _baseos + _rhui + "-rpms" + "<br>" +
+           "rhel-8-for-" + vArch + _appstream + _rhui + "-rpms" + "<br>" +
+           "rhel-8-for-" + vArch + _sap_netweaver + _rhui + "-rpms" +
+           _haRepo +
+           "<br>";
+         document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
+           "subscription-manager repos \\<br>" +
+           "--enable=\"" + "rhel-8-for-" + vArch + _baseos + _rhui + "-rpms" + "\" \\<br>" +
+           "--enable=\"" + "rhel-8-for-" + vArch + _appstream + _rhui + "-rpms" + "\" \\<br>" +
+           "--enable=\"" + "rhel-8-for-" + vArch + _sap_netweaver + _rhui + "-rpms" + "\"" +
+           _haText;
       }
       
    }
