@@ -19,7 +19,7 @@
 // v1.5.2: added required minimum RHEL kernel versions for SAP HANA to the "RHEL x.y:" line
 //       Sat 13 Jun 2020
 // v1.5.3: added cloud repo names
-//       Tue 16 Jun 2020
+//       Tue 25 Jun 2020
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -213,7 +213,7 @@ function displayResults() {
 	    document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-	    _ha = _rhui + "rhel-ha-for-rhel-7-server-" + _rhui + "e4s-rpms";
+	    _ha = "rhel-ha-for-rhel-7-server-" + _rhui + "e4s-rpms";
             _haRepo = "<br>" + _ha + "<br>";
             _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
          }
@@ -223,14 +223,14 @@ function displayResults() {
 "<br>";
 	 }
          document.getElementById("idRepos").innerHTML = 
-           _rhui + "rhel-7-server-" + _rhui + "e4s-rpms" + "<br>" +
-           _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" +
+           "rhel-7-server-" + _rhui + "e4s-rpms" + "<br>" +
+           "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" +
            _haRepo +
            "<br><br>";
          document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
            "subscription-manager repos \\<br>" +
-           "--enable=\"" + _rhui + "rhel-7-server-" + _rhui + "e4s-rpms" + "\" \\<br>" +
-           "--enable=\"" + _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + "\"" +
+           "--enable=\"" + "rhel-7-server-" + _rhui + "e4s-rpms" + "\" \\<br>" +
+           "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + "\"" +
            _haText;
      	 if (vRHEL == "7.2") {
      	    document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 SPS12</a>" + ".&nbsp;" +
@@ -256,19 +256,19 @@ function displayResults() {
 "HANA 1.0 SPS12: <b>gcc 4</b>.<br>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-862</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available; support for EUS ended April 30, 2020</a>";
             if (vHA == "HA") {
-	       _ha = _rhui + "rhel-ha-for-rhel-7-server-" + _rhui + "eus-rpms";
+	       _ha = "rhel-ha-for-rhel-7-server-" + _rhui + "eus-rpms";
                _haRepo = "<br>" + _ha + "<br>";
                _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
             }
             document.getElementById("idRepos").innerHTML = 
-              _rhui + "rhel-7-server-" + _rhui + "eus-rpms" + "<br>" +
-              _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "eus-rpms" +
+              "rhel-7-server-" + _rhui + "eus-rpms" + "<br>" +
+              "rhel-sap-hana-for-rhel-7-server-" + _rhui + "eus-rpms" +
               _haRepo +
               "<br><br>";
             document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
               "subscription-manager repos \\<br>" +
-              "--enable=\"" + _rhui + "rhel-7-server-" + _rhui + "eus-rpms" + "\" \\<br>" +
-              "--enable=\"" + _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "eus-rpms" + "\"" +
+              "--enable=\"" + "rhel-7-server-" + _rhui + "eus-rpms" + "\" \\<br>" +
+              "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "eus-rpms" + "\"" +
               _haText;
      	 }
          else if (vRHEL == "7.6") {
@@ -392,7 +392,7 @@ function displayResults() {
 		  document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-                  _ha = _rhui + "rhel-ha-for-rhel-7-server-" + _rhui + "e4s-rpms"
+                  _ha = "rhel-ha-for-rhel-7-server-" + _rhui + "e4s-rpms"
 		  _haRepo = "<br>" + _ha + "<br>";
                   _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
                }
@@ -402,14 +402,14 @@ function displayResults() {
 "<br>";
 	       }
                document.getElementById("idRepos").innerHTML = 
-                 _rhui + "rhel-7-server-" + _rhui + "e4s-rpms" + "<br>" +
-                 _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" +
+                 "rhel-7-server-" + _rhui + "e4s-rpms" + "<br>" +
+                 "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" +
                  _haRepo +
                  "<br><br>";
                document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
                  "subscription-manager repos \\<br>" +
-                 "--enable=\"" + _rhui + "rhel-7-server-" + _rhui + "e4s-rpms" + "\" \\<br>" +
-                 "--enable=\"" + _rhui + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + "\"" +
+                 "--enable=\"" + "rhel-7-server-" + _rhui + "e4s-rpms" + "\" \\<br>" +
+                 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + "\"" +
                  _haText;
             }
             else if (vArch == "ppc64le") {
@@ -502,8 +502,8 @@ function displayResults() {
 		  document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-                  _haRepo = "<br>" + _rhui1 + "rhel-ha-for-rhel-7-server" + _rhui2 + "-rpms" + "<br>";
-                  _haText = " \\<br>" + "--enable=\"" + _rhui1 + "rhel-ha-for-rhel-7-server" + _rhui2 + "-rpms" + "\"";
+                  _haRepo = "<br>" + "rhel-ha-for-rhel-7-server" + _rhui2 + "-rpms" + "<br>";
+                  _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-server" + _rhui2 + "-rpms" + "\"";
                }
 	       else {
 	          document.getElementById("idResources").innerHTML +=
@@ -511,14 +511,14 @@ function displayResults() {
 "<br>";
 	       }
                document.getElementById("idRepos").innerHTML = 
-                 _rhui1 + "rhel-7-server" + _rhui2 + "-rpms" + "<br>" +
-                 _rhui1 + "rhel-sap-hana-for-rhel-7-server" + _rhui2 + "-rpms" +
+                 "rhel-7-server" + _rhui2 + "-rpms" + "<br>" +
+                 "rhel-sap-hana-for-rhel-7-server" + _rhui2 + "-rpms" +
                  _haRepo +
                  "<br><br>";
                document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
                  "subscription-manager repos \\<br>" +
-                 "--enable=\"" + _rhui1 + "rhel-7-server" + _rhui2 + "-rpms" + "\" \\<br>" +
-                 "--enable=\"" + _rhui1 + "rhel-sap-hana-for-rhel-7-server" + _rhui2 + "-rpms" + "\"" +
+                 "--enable=\"" + "rhel-7-server" + _rhui2 + "-rpms" + "\" \\<br>" +
+                 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server" + _rhui2 + "-rpms" + "\"" +
                  _haText;
             }
             else if (vArch == "ppc64le") {
@@ -845,7 +845,7 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>" +
 "<br>";
-               _ha = _rhui + "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui2 + "rpms";
+               _ha = "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui2 + "rpms";
 	       _haRepo = "<br>" + _ha + "<br>";
 	       _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
             }
@@ -855,14 +855,14 @@ function displayResults() {
 "<br>";
 	    }
             document.getElementById("idRepos").innerHTML = 
-              _rhui1 + "rhel-7-server-" + _rhui2 + "rpms" + "<br>" +
-              _rhui1 + "rhel-sap-for-rhel-7-server-" + _rhui2 + "rpms" +
+              "rhel-7-server-" + _rhui2 + "rpms" + "<br>" +
+              "rhel-sap-for-rhel-7-server-" + _rhui2 + "rpms" +
               _haRepo +
               "<br><br>";
             document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
               "subscription-manager repos \\<br>" +
-              "--enable=\"" + _rhui1 + "rhel-7-server-" + _rhui2 + "rpms" + "\" \\<br>" +
-              "--enable=\"" + _rhui1 + "rhel-sap-for-rhel-7-server-" + _rhui2 + "rpms" + "\"" +
+              "--enable=\"" + "rhel-7-server-" + _rhui2 + "rpms" + "\" \\<br>" +
+              "--enable=\"" + "rhel-sap-for-rhel-7-server-" + _rhui2 + "rpms" + "\"" +
               _haText;
          }
          else if (vArch == "ppc64le") {
@@ -887,7 +887,7 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>" +
 "<br>";
-                  _ha = _rhui + "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
+                  _ha = "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
 	          _haRepo = "<br>" + _ha + "<br>";
 	          _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
                }
@@ -916,7 +916,7 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>" +
 "<br>";
-               _ha = _rhui + "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
+               _ha = "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
 	       _haRepo = "<br>" + _ha + "<br>";
 	       _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
             }
@@ -944,7 +944,7 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>" +
 "<br>";
-               _ha = _rhui + "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
+               _ha = "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
 	       _haRepo = "<br>" + _ha + "<br>";
 	       _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
             }
