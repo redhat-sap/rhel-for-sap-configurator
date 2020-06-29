@@ -118,20 +118,19 @@ function displayResults() {
    if (vArch == "ppc64le") {
       document.getElementById("id_72").disabled = true;
       document.getElementById("id_Cloud_on").disabled = true;
-      document.getElementById("id_Cloud_off").checked = false;
       document.getElementById("id_Cloud_off").checked = true;
    }
    if (vSAP == "SAP HANA 1.0") {
       document.getElementById("id_ppc64").disabled = true;
       document.getElementById("id_ppc64le").disabled = true;
       document.getElementById("id_s390x").disabled = true;
+      document.getElementById("id_x86_64").checked = true;
       document.getElementById("id_78").disabled = true;
       document.getElementById("id_80").disabled = true;
       document.getElementById("id_81").disabled = true;
       document.getElementById("id_82").disabled = true;
       if (vRHELmajor == "6") {
          document.getElementById("id_Cloud_on").disabled = true;
-         document.getElementById("id_Cloud_off").checked = false;
          document.getElementById("id_Cloud_off").checked = true;
          document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
          document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = 
@@ -202,6 +201,7 @@ function displayResults() {
            _haText;
       }
       else if (vRHELmajor == "7") {
+	 _exs="e4s";
          document.getElementById("idResources").innerHTML = 
 "<a href=\"https://access.redhat.com/solutions/3075991\">Red Hat KB 3075991</a> - How to subscribe SAP HANA systems to the Update Services for SAP Solutions" + "<br>" + 
 "<a href=\"https://launchpad.support.sap.com/#/notes/2002167\">SAP note 2002167</a> - Red Hat Enterprise Linux 7.x: Installation and Upgrade" + "<br>" +
@@ -211,7 +211,6 @@ function displayResults() {
          "subscription-manager release --set=" + vRHEL;
      	 if (vRHEL == "7.2") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
             vCloud = "no Cloud";
      	    document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 SPS12</a>" + ".&nbsp;" +
@@ -221,7 +220,6 @@ function displayResults() {
      	 }
      	 else if (vRHEL == "7.3") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
             vCloud = "no Cloud";
      	    document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 SPS12</a>" + ".&nbsp;" +
@@ -236,10 +234,12 @@ function displayResults() {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-693</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available; support ends August 31, 2021</a>";
      	 }
      	 else if (vRHEL == "7.5") {
+	    _exs="eus";
      	    document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 SPS12 rev 122.19 and newer</a>" + ".&nbsp;" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.30</a>" + "<br>" +
 "HANA 1.0 SPS12: <b>gcc 4</b>.<br>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-862</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available; support for EUS ended April 30, 2020</a>";
+/*
             if (vHA == "HA") {
 	       _ha = "rhel-ha-for-rhel-7-server-" + _rhui + "eus-rpms";
                _haRepo = "<br>" + _ha + "<br>";
@@ -255,8 +255,10 @@ function displayResults() {
               "--enable=\"" + "rhel-7-server-" + _rhui + "eus-rpms" + "\" \\<br>" +
               "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "eus-rpms" + "\"" +
               _haText;
+*/
      	 }
          else if (vRHEL == "7.6") {
+	    _exs="e4s";
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 SPS12 rev 122.23 and newer</a>" + ".&nbsp;" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.30</a>" + "<br>" +
 "HANA 1.0 SPS12: <b>gcc 4</b>.<br>";
@@ -272,7 +274,7 @@ function displayResults() {
 	    document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-	    _ha = "rhel-ha-for-rhel-7-server-" + _rhui + "e4s-rpms";
+	    _ha = "rhel-ha-for-rhel-7-server-" + _rhui + _exs + "-rpms";
             _haRepo = "<br>" + _ha + "<br>";
             _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
          }
@@ -282,18 +284,22 @@ function displayResults() {
 "<br>";
 	 }
          document.getElementById("idRepos").innerHTML = 
-           "rhel-7-server-" + _rhui + "e4s-rpms" + "<br>" +
-           "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" +
+           "rhel-7-server-" + _rhui + _exs + "-rpms" + "<br>" +
+           "rhel-sap-hana-for-rhel-7-server-" + _rhui + _exs + "-rpms" +
            _haRepo +
            "<br><br>";
          document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
            "subscription-manager repos \\<br>" +
-           "--enable=\"" + "rhel-7-server-" + _rhui + "e4s-rpms" + "\" \\<br>" +
-           "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + "\"" +
+           "--enable=\"" + "rhel-7-server-" + _rhui + _exs + "-rpms" + "\" \\<br>" +
+           "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _rhui + _exs + "-rpms" + "\"" +
            _haText;
+	 if (vCloud == "Cloud") {
+	    document.getElementById("titleCommands").innerHTML = "";
+            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+         }
          if (vRHEL == "7.7") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 is not yet supported for RHEL " + vRHEL + "</a>" + "<br><br>";
             document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
@@ -307,7 +313,6 @@ function displayResults() {
          }
          else if (vRHEL == "7.8") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 is not supported for RHEL " + vRHEL + "</a>" + "<br><br>";
             document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
@@ -371,7 +376,6 @@ function displayResults() {
             if (vArch == "x86_64") {
                if (vRHEL == "7.2") {
                   document.getElementById("id_Cloud_on").disabled = true;
-                  document.getElementById("id_Cloud_off").checked = false;
                   document.getElementById("id_Cloud_off").checked = true;
 		  vCloud = "no Cloud";
 		  _rhui_ext = "";
@@ -385,7 +389,6 @@ function displayResults() {
                }
                else if (vRHEL == "7.3") {
                   document.getElementById("id_Cloud_on").disabled = true;
-                  document.getElementById("id_Cloud_off").checked = false;
                   document.getElementById("id_Cloud_off").checked = true;
 		  vCloud = "no Cloud";
 		  _rhui_ext = "";
@@ -436,7 +439,7 @@ function displayResults() {
 		  document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-                  _ha = "rhel-ha-for-rhel-7-server-" + _rhui + "e4s-rpms" + _rhui_ext;
+                  _ha = "rhel-ha-for-rhel-7-server-e4s-" + _rhui + "rpms" + _rhui_ext;
 		  _haRepo = "<br>" + _ha + "<br>";
                   _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
                }
@@ -446,15 +449,20 @@ function displayResults() {
 "<br>";
 	       }
                document.getElementById("idRepos").innerHTML = 
-                 "rhel-7-server-" + _rhui + "e4s-rpms" + _rhui_ext + "<br>" +
+                 "rhel-7-server-e4s-" + _rhui + "rpms" + _rhui_ext + "<br>" +
                  "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + _rhui_ext +
                  _haRepo +
                  "<br><br>";
                document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
                  "subscription-manager repos \\<br>" +
-                 "--enable=\"" + "rhel-7-server-" + _rhui + "e4s-rpms"  + _rhui_ext + "\" \\<br>" +
+                 "--enable=\"" + "rhel-7-server-e4s-" + _rhui + "rpms"  + _rhui_ext + "\" \\<br>" +
                  "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + _rhui_ext + "\"" +
                  _haText;
+	       if (vCloud == "Cloud") {
+	   	  document.getElementById("titleCommands").innerHTML = "";
+           	  document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+           	  document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+               }
             }
             else if (vArch == "ppc64le") {
                document.getElementById("idResources").innerHTML = 
@@ -558,15 +566,20 @@ function displayResults() {
 "<br>";
 	       }
                document.getElementById("idRepos").innerHTML = 
-                 "rhel-7-server" + _rhui2 + "-rpms" + _rhui_ext + "<br>" +
-                 "rhel-sap-hana-for-rhel-7-server" + _rhui2 + "-rpms" + _rhui_ext +
+                 "rhel-7-server-" + _rhui1 + "eus-rpms" + _rhui_ext + "<br>" +
+                 "rhel-sap-hana-for-rhel-7-server-eus-" + _rhui1 + "rpms" + _rhui_ext +
                  _haRepo +
                  "<br><br>";
                document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
                  "subscription-manager repos \\<br>" +
-                 "--enable=\"" + "rhel-7-server" + _rhui2 + "-rpms" + _rhui_ext + "\" \\<br>" +
-                 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server" + _rhui2 + "-rpms" + _rhui_ext + "\"" +
+                 "--enable=\"" + "rhel-7-server" + _rhui1 + "eus-rpms" + _rhui_ext + "\" \\<br>" +
+                 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-eus-" + _rhui1 + "rpms" + _rhui_ext + "\"" +
                  _haText;
+	       if (vCloud == "Cloud") {
+	   	  document.getElementById("titleCommands").innerHTML = "";
+           	  document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+           	  document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+               }
             }
             else if (vArch == "ppc64le") {
                document.getElementById("idResources").innerHTML = 
@@ -600,7 +613,6 @@ function displayResults() {
          }
          else if (vRHEL == "7.7") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
 	    vCloud = "no Cloud";
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 is not yet supported for RHEL " + vRHEL + "</a>" + "<br><br>";
@@ -616,7 +628,6 @@ function displayResults() {
          }
          else if (vRHEL == "7.8") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
 	    vCloud = "no Cloud";
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 is not supported for RHEL " + vRHEL + "</a>" + "<br><br>";
@@ -702,7 +713,11 @@ function displayResults() {
                  "--enable=\"" + "rhel-8-for-" + vArch + _sap_solutions + "-e4s" + _rhui + "-rpms" + _rhui_ext + "\" \\<br>" +
                  "--enable=\"" + "rhel-8-for-" + vArch + _sap_netweaver + "-e4s" + _rhui + "-rpms" + _rhui_ext + "\"" +
                  _haText;
-               
+	       if (vCloud == "Cloud") {
+	   	  document.getElementById("titleCommands").innerHTML = "";
+           	  document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+           	  document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+               }
             }
             else if (vArch == "ppc64le") {
                document.getElementById("idResources").innerHTML = 
@@ -771,7 +786,6 @@ function displayResults() {
       document.getElementById("id_ppc64le").disabled = false;
       if (vRHELmajor == "6") {
          document.getElementById("id_Cloud_on").disabled = true;
-         document.getElementById("id_Cloud_off").checked = false;
          document.getElementById("id_Cloud_off").checked = true;
          document.getElementById("idResources").innerHTML = 
 "<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" + 
@@ -877,10 +891,16 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" + 
 "<a href=\"https://launchpad.support.sap.com/#/notes/2002167\">SAP note 2002167</a> - Red Hat Enterprise Linux 7.x: Installation and Upgrade" + "<br>";
          if (vRHEL == "7.2") {
+            document.getElementById("id_Cloud_on").disabled = true;
+            document.getElementById("id_Cloud_off").checked = true;
+            vCloud = "no Cloud";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-327</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not required; support for EUS ended November 30, 2017; support for E4S ended November 30, 2019</a>";
             document.getElementById("id_ppc64le").disabled = true;
          }
          else if (vRHEL == "7.3") {
+            document.getElementById("id_Cloud_on").disabled = true;
+            document.getElementById("id_Cloud_off").checked = true;
+            vCloud = "no Cloud";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-514</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not required; support for EUS ended November 30, 2018; support for E4S ends November 30, 2020</a>";
          }
          else if (vRHEL == "7.4") {
@@ -893,9 +913,15 @@ function displayResults() {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-957</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not required; support for EUS ends May 31, 2021; support for E4S ends October 31, 2022</a>";
          }
          else if (vRHEL == "7.7") {
+            document.getElementById("id_Cloud_on").disabled = true;
+            document.getElementById("id_Cloud_off").checked = true;
+            vCloud = "no Cloud";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1062</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not required; support for EUS ends August 30, 2021; support for E4S ends August 30, 2023</a>";
          }
          else if (vRHEL == "7.8") {
+            document.getElementById("id_Cloud_on").disabled = true;
+            document.getElementById("id_Cloud_off").checked = true;
+            vCloud = "no Cloud";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1127</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Maintenance_Support_2_Phase\">E4S and EUS not available; support ends at RHEL 7.9 release date, 3QCY20</a>";
          }
          if (vCloud == "no Cloud") {
@@ -933,10 +959,14 @@ function displayResults() {
               "--enable=\"" + "rhel-7-server-" + _rhui2 + "rpms" + "\" \\<br>" +
               "--enable=\"" + "rhel-sap-for-rhel-7-server-" + _rhui2 + "rpms" + "\"" +
               _haText;
+	    if (vCloud == "Cloud") {
+	       document.getElementById("titleCommands").innerHTML = "";
+               document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+               document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+            }
          }
          else if (vArch == "ppc64le") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
 	    _rhui=""
             if (vRHEL == "7.2") {
@@ -981,7 +1011,6 @@ function displayResults() {
          }
          else if (vArch == "ppc64") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
 	    _rhui=""
             if (vHA == "HA") {
@@ -1011,7 +1040,6 @@ function displayResults() {
          }
          else if (vArch == "s390x") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
 	    _rhui=""
             if (vHA == "HA") {
@@ -1064,13 +1092,11 @@ function displayResults() {
          }
          if (vArch == "ppc64le") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
 	    _rhui=""
          }
          else if (vArch == "ppc64") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
 	    _rhui=""
      	    document.getElementById("titleRepos").innerHTML = "RHEL " + vRHELmajor + " is not supported on " + vArch + ".";
@@ -1081,7 +1107,6 @@ function displayResults() {
          }
          else if (vArch == "s390x") {
             document.getElementById("id_Cloud_on").disabled = true;
-            document.getElementById("id_Cloud_off").checked = false;
             document.getElementById("id_Cloud_off").checked = true;
 	    _rhui=""
      	 }
@@ -1113,6 +1138,11 @@ function displayResults() {
            "--enable=\"" + "rhel-8-for-" + vArch + _appstream + _rhui + "-rpms" + "\" \\<br>" +
            "--enable=\"" + "rhel-8-for-" + vArch + _sap_netweaver + _rhui + "-rpms" + "\"" +
            _haText;
+	 if (vCloud == "Cloud") {
+	    document.getElementById("titleCommands").innerHTML = "";
+            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+         }
       }
       
    }
