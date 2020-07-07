@@ -23,7 +23,7 @@
 // v1.5.4: SAP note 2235581 v.59; auto-select "no Cloud" in case "Cloud" is not available
 //       Mon 29 Jun 2020
 // v1.5.5: SAP note 2235581 v.59: HANA 2 SPS05
-//       Mon 06 Jul 2020
+//       Tue 07 Jul 2020
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
