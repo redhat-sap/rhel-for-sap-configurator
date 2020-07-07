@@ -241,23 +241,6 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.30</a>" + "<br>" +
 "HANA 1.0 SPS12: <b>gcc 4</b>.<br>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-862</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available; support for EUS ended April 30, 2020</a>";
-/*
-            if (vHA == "HA") {
-	       _ha = "rhel-ha-for-rhel-7-server-" + _rhui + "eus-rpms";
-               _haRepo = "<br>" + _ha + "<br>";
-               _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
-            }
-            document.getElementById("idRepos").innerHTML = 
-              "rhel-7-server-" + _rhui + "eus-rpms" + "<br>" +
-              "rhel-sap-hana-for-rhel-7-server-" + _rhui + "eus-rpms" +
-              _haRepo +
-              "<br><br>";
-            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
-              "subscription-manager repos \\<br>" +
-              "--enable=\"" + "rhel-7-server-" + _rhui + "eus-rpms" + "\" \\<br>" +
-              "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "eus-rpms" + "\"" +
-              _haText;
-*/
      	 }
          else if (vRHEL == "7.6") {
 	    _exs="e4s";
@@ -270,13 +253,13 @@ function displayResults() {
      	    _rhui=""
      	 }
      	 else {
-     	    _rhui="rhui-"
+     	    _rhui="-rhui"
      	 }
          if (vHA == "HA") {
 	    document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-	    _ha = "rhel-ha-for-rhel-7-server-" + _rhui + _exs + "-rpms";
+	    _ha = "rhel-ha-for-rhel-7-server-" + _exs + _rhui + "-rpms";
             _haRepo = "<br>" + _ha + "<br>";
             _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
          }
@@ -285,20 +268,42 @@ function displayResults() {
 "<br>" +
 "<br>";
 	 }
-         document.getElementById("idRepos").innerHTML = 
-           "rhel-7-server-" + _rhui + _exs + "-rpms" + "<br>" +
-           "rhel-sap-hana-for-rhel-7-server-" + _rhui + _exs + "-rpms" +
-           _haRepo +
-           "<br><br>";
-         document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
-           "subscription-manager repos \\<br>" +
-           "--enable=\"" + "rhel-7-server-" + _rhui + _exs + "-rpms" + "\" \\<br>" +
-           "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _rhui + _exs + "-rpms" + "\"" +
-           _haText;
-	 if (vCloud == "Cloud") {
-	    document.getElementById("titleCommands").innerHTML = "";
-            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
-            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+     	 if (vCloud == "no Cloud") {
+            document.getElementById("idRepos").innerHTML = 
+              "rhel-7-server-" + _exs + "-rpms" + "<br>" +
+              "rhel-sap-hana-for-rhel-7-server-" + _exs + "-rpms" +
+              _haRepo;
+            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
+              "subscription-manager repos \\<br>" +
+              "--enable=\"" + "rhel-7-server-" + _exs + "-rpms" + "\" \\<br>" +
+              "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _exs + "-rpms" + "\"" +
+              _haText;
+     	 }
+	 else {
+	    if (vRHEL == "7.5") {
+               document.getElementById("idRepos").innerHTML = 
+           	 "rhel-7-server" + _rhui + "-eus-rpms" + "<br>" +
+           	 "rhel-7-server" + _rhui + "-eus-optional-rpms" + "<br>" +
+           	 "rhel-7-server" + _rhui + "-eus-supplementary-rpms" + "<br>" +
+           	 "rhel-sap-for-rhel-7-server-eus"  + _rhui + "-rpms" + "<br>" +
+           	 "rhel-sap-hana-for-rhel-7-server-eus" + _rhui + "-rpms" +
+           	 _haRepo;
+	       document.getElementById("titleCommands").innerHTML = "";
+               document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+               document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+            }
+	    else { // vRHEL == "7.4" OR vRHEL == "7.6"
+               document.getElementById("idRepos").innerHTML = 
+           	 "rhel-7-server-e4s" + _rhui + "-rpms" + "<br>" +
+           	 "rhel-7-server-e4s-optional" + _rhui + "-rpms" + "<br>" +
+//           	 "rhel-7-server-e4s-supplementary" + _rhui + "-rpms" + "<br>" +
+           	 "rhel-sap-for-rhel-7-server" + _rhui + "-e4s-rpms" + "<br>" +
+           	 "rhel-sap-hana-for-rhel-7-server" + _rhui + "-e4s-rpms" +
+           	 _haRepo;
+	       document.getElementById("titleCommands").innerHTML = "";
+               document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+               document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+            }
          }
          if (vRHEL == "7.7") {
             document.getElementById("id_Cloud_on").disabled = true;
@@ -435,13 +440,13 @@ function displayResults() {
      	    	  _rhui=""
      	       }
      	       else {
-     	    	  _rhui="rhui-"
+     	    	  _rhui="-rhui"
      	       }
                if (vHA == "HA") {
 		  document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-                  _ha = "rhel-ha-for-rhel-7-server-e4s-" + _rhui + "rpms" + _rhui_ext;
+                  _ha = "rhel-ha-for-rhel-7-server-e4s" + _rhui + "-rpms" + _rhui_ext;
 		  _haRepo = "<br>" + _ha + "<br>";
                   _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
                }
@@ -450,17 +455,25 @@ function displayResults() {
 "<br>" +
 "<br>";
 	       }
-               document.getElementById("idRepos").innerHTML = 
-                 "rhel-7-server-e4s-" + _rhui + "rpms" + _rhui_ext + "<br>" +
-                 "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + _rhui_ext +
-                 _haRepo +
-                 "<br><br>";
-               document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
-                 "subscription-manager repos \\<br>" +
-                 "--enable=\"" + "rhel-7-server-e4s-" + _rhui + "rpms"  + _rhui_ext + "\" \\<br>" +
-                 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _rhui + "e4s-rpms" + _rhui_ext + "\"" +
-                 _haText;
-	       if (vCloud == "Cloud") {
+	       if (vCloud == "no Cloud") {
+                  document.getElementById("idRepos").innerHTML = 
+                    "rhel-7-server-e4s-rpms" + "<br>" +
+                    "rhel-sap-hana-for-rhel-7-server-e4s-rpms" +
+                    _haRepo;
+                  document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
+                    "subscription-manager repos \\<br>" +
+                    "--enable=\"" + "rhel-7-server-e4s-rpms" + "\" \\<br>" +
+                    "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-e4s-rpms" + "\"" +
+                    _haText;
+               }
+	       else {
+                  document.getElementById("idRepos").innerHTML = 
+                    "rhel-7-server-e4s" + _rhui + "-rpms" + "<br>" +
+                    "rhel-7-server-e4s-optional" + _rhui + "-rpms" + "<br>" +
+//                  "rhel-7-server-e4s-supplementary" + _rhui + "-rpms" + "<br>" +
+                    "rhel-sap-for-rhel-7-server" + _rhui + "-e4s-rpms" + "<br>" +
+                    "rhel-sap-hana-for-rhel-7-server" + _rhui + "-e4s-rpms" +
+                    _haRepo;
 	   	  document.getElementById("titleCommands").innerHTML = "";
            	  document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
            	  document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
@@ -534,6 +547,7 @@ function displayResults() {
             }
          }
          else if (vRHEL == "7.5") {
+	    _exs="eus";
             document.getElementById("idResources").innerHTML = 
 "<a href=\"https://access.redhat.com/solutions/3075991\">Red Hat KB 3075991</a> - How to subscribe SAP HANA systems to the Update Services for SAP Solutions" + "<br>" + 
 "<a href=\"https://launchpad.support.sap.com/#/notes/2002167\">SAP note 2002167</a> - Red Hat Enterprise Linux 7.x: Installation and Upgrade" + "<br>" +
@@ -545,40 +559,48 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS03 rev 37.06</a>" + "<br>" +
 "HANA 2.0 SPS03: <b><a href=\"https://launchpad.support.sap.com/#/notes/2455582\">gcc 6</a></b>.<br>";
      	       if (vCloud == "no Cloud") {
-     	    	  _rhui1=""
-     	    	  _rhui2=""
+     	    	  _rhui="";
                   _rhui_ext = "";
      	       }
      	       else {
-     	    	  _rhui1="rhui-"
-     	    	  _rhui2="-rhui-eus"
+     	    	  _rhui="-rhui";
                   _rhui_ext = "";
 //                  _rhui_ext = "__7_DOT_5__x86_64";
      	       }
                if (vHA == "HA") {
-		  document.getElementById("idResources").innerHTML +=
+	          document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-                  _haRepo = "<br>" + "rhel-ha-for-rhel-7-server" + _rhui2 + "-rpms" + _rhui_ext + "<br>";
-                  _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-server" + _rhui2 + "-rpms" + _rhui_ext + "\"";
+	   	  _ha = "rhel-ha-for-rhel-7-server-" + _exs + _rhui + "-rpms";
+           	  _haRepo = "<br>" + _ha + "<br>";
+           	  _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
                }
 	       else {
 	          document.getElementById("idResources").innerHTML +=
 "<br>" +
 "<br>";
 	       }
-               document.getElementById("idRepos").innerHTML = 
-                 "rhel-7-server-" + _rhui1 + "eus-rpms" + _rhui_ext + "<br>" +
-                 "rhel-sap-hana-for-rhel-7-server-eus-" + _rhui1 + "rpms" + _rhui_ext +
-                 _haRepo +
-                 "<br><br>";
-               document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
-                 "subscription-manager repos \\<br>" +
-                 "--enable=\"" + "rhel-7-server" + _rhui1 + "eus-rpms" + _rhui_ext + "\" \\<br>" +
-                 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-eus-" + _rhui1 + "rpms" + _rhui_ext + "\"" +
-                 _haText;
-	       if (vCloud == "Cloud") {
+	       if (vCloud == "no Cloud") {
+                  document.getElementById("idRepos").innerHTML = 
+                    "rhel-7-server-eus-rpms" + "<br>" +
+                    "rhel-sap-hana-for-rhel-7-server-eus-rpms" +
+                    _haRepo +
+                    "<br><br>";
+                  document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
+                    "subscription-manager repos \\<br>" +
+                    "--enable=\"" + "rhel-7-server-eus-rpms" + "\" \\<br>" +
+                    "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-eus-rpms" + "\"" +
+                    _haText;
+                  }
+	       else {
 	   	  document.getElementById("titleCommands").innerHTML = "";
+                  document.getElementById("idRepos").innerHTML = 
+            	    "rhel-7-server" + _rhui + "-eus-rpms" + "<br>" +
+            	    "rhel-7-server" + _rhui + "-eus-optional-rpms" + "<br>" +
+            	    "rhel-7-server" + _rhui + "-eus-supplementary-rpms" + "<br>" +
+            	    "rhel-sap-for-rhel-7-server-eus"  + _rhui + "-rpms" + "<br>" +
+            	    "rhel-sap-hana-for-rhel-7-server-eus" + _rhui + "-rpms" +
+            	    _haRepo;
            	  document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
            	  document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
                }
@@ -927,14 +949,12 @@ function displayResults() {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1127</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Maintenance_Support_2_Phase\">E4S and EUS not available; support ends at RHEL 7.9 release date, 3QCY20</a>";
          }
          if (vCloud == "no Cloud") {
-	    _rhui=""
-	    _rhui1=""
-	    _rhui2=""
+	    _rhui="";
+	    _rhui2="eus-";
          }
          else {
-	    _rhui="rhui-"
-	    _rhui1="rhui-"
-	    _rhui2="rhui-eus-"
+	    _rhui="-rhui";
+	    _rhui2="rhui-eus-";
          }
          if (vArch == "x86_64") {
             if (vHA == "HA") {
@@ -951,6 +971,46 @@ function displayResults() {
 "<br>" +
 "<br>";
 	    }
+     	    if (vCloud == "no Cloud") {
+     	       document.getElementById("idRepos").innerHTML = 
+     		 "rhel-7-server-eus-rpms" + "<br>" +
+     		 "rhel-sap-hana-for-rhel-7-server-eus-rpms" +
+     		 _haRepo;
+     	       document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
+     		 "subscription-manager repos \\<br>" +
+     		 "--enable=\"" + "rhel-7-server-eus-rpms" + "\" \\<br>" +
+     		 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-eus-rpms" + "\"" +
+     		 _haText;
+     	    }
+     	    else {
+//     	       if (vRHEL == "7.5") {
+     		  document.getElementById("idRepos").innerHTML = 
+     		    "rhel-7-server" + _rhui + "-eus-rpms" + "<br>" +
+     		    "rhel-7-server" + _rhui + "-eus-optional-rpms" + "<br>" +
+     		    "rhel-7-server" + _rhui + "-eus-supplementary-rpms" + "<br>" +
+     		    "rhel-sap-for-rhel-7-server-eus"  + _rhui + "-rpms" + "<br>" +
+     		    "rhel-sap-hana-for-rhel-7-server-eus" + _rhui + "-rpms" +
+     		    _haRepo;
+     	   	  document.getElementById("titleCommands").innerHTML = "";
+     		  document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+     		  document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+//     	       }
+/*
+     	       else { // vRHEL == "7.4" OR vRHEL == "7.6"
+     		  document.getElementById("idRepos").innerHTML = 
+     		    "rhel-7-server-e4s" + _rhui + "-rpms" + "<br>" +
+     		    "rhel-7-server-e4s-optional" + _rhui + "-rpms" + "<br>" +
+//           	    "rhel-7-server-e4s-supplementary" + _rhui + "-rpms" + "<br>" +
+         	    "rhel-sap-for-rhel-7-server" + _rhui + "-e4s-rpms" + "<br>" +
+         	    "rhel-sap-hana-for-rhel-7-server" + _rhui + "-e4s-rpms" +
+         	    _haRepo;
+           	  document.getElementById("titleCommands").innerHTML = "";
+         	  document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+         	  document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+               }
+*/
+            }
+/*
             document.getElementById("idRepos").innerHTML = 
               "rhel-7-server-" + _rhui2 + "rpms" + "<br>" +
               "rhel-sap-for-rhel-7-server-" + _rhui2 + "rpms" +
@@ -966,6 +1026,7 @@ function displayResults() {
                document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
                document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
             }
+*/
          }
          else if (vArch == "ppc64le") {
             document.getElementById("id_Cloud_on").disabled = true;
