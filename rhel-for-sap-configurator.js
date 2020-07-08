@@ -977,7 +977,8 @@ function displayResults() {
      	       document.getElementById("idRepos").innerHTML = 
      		 "rhel-7-server-rpms" + "<br>" +
      		 "rhel-sap-for-rhel-7-server-rpms" +
-     		 _haRepo;
+     		 _haRepo +
+                 "<br><br>";
      	       document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
      		 "subscription-manager repos \\<br>" +
      		 "--enable=\"" + "rhel-7-server-rpms" + "\" \\<br>" +
