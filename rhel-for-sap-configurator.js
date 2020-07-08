@@ -974,12 +974,12 @@ function displayResults() {
      	    if (vCloud == "no Cloud") {
      	       document.getElementById("idRepos").innerHTML = 
      		 "rhel-7-server-eus-rpms" + "<br>" +
-     		 "rhel-sap-hana-for-rhel-7-server-eus-rpms" +
+     		 "rhel-sap-for-rhel-7-server-eus-rpms" +
      		 _haRepo;
      	       document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
      		 "subscription-manager repos \\<br>" +
      		 "--enable=\"" + "rhel-7-server-eus-rpms" + "\" \\<br>" +
-     		 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-eus-rpms" + "\"" +
+     		 "--enable=\"" + "rhel-sap-for-rhel-7-server-eus-rpms" + "\"" +
      		 _haText;
      	    }
      	    else {
