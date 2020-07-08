@@ -24,6 +24,8 @@
 //       Mon 29 Jun 2020
 // v1.5.5: SAP note 2235581 v.59: HANA 2 SPS05
 //       Tue 07 Jul 2020
+// v1.5.6: no need to use eus for SAP NW on RHEL 7
+//       Tue 08 Jul 2020
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -950,7 +952,7 @@ function displayResults() {
          }
          if (vCloud == "no Cloud") {
 	    _rhui="";
-	    _rhui2="eus-";
+	    _rhui2="";
          }
          else {
 	    _rhui="-rhui";
@@ -973,13 +975,13 @@ function displayResults() {
 	    }
      	    if (vCloud == "no Cloud") {
      	       document.getElementById("idRepos").innerHTML = 
-     		 "rhel-7-server-eus-rpms" + "<br>" +
-     		 "rhel-sap-for-rhel-7-server-eus-rpms" +
+     		 "rhel-7-server-rpms" + "<br>" +
+     		 "rhel-sap-for-rhel-7-server-rpms" +
      		 _haRepo;
      	       document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
      		 "subscription-manager repos \\<br>" +
-     		 "--enable=\"" + "rhel-7-server-eus-rpms" + "\" \\<br>" +
-     		 "--enable=\"" + "rhel-sap-for-rhel-7-server-eus-rpms" + "\"" +
+     		 "--enable=\"" + "rhel-7-server-rpms" + "\" \\<br>" +
+     		 "--enable=\"" + "rhel-sap-for-rhel-7-server-rpms" + "\"" +
      		 _haText;
      	    }
      	    else {
