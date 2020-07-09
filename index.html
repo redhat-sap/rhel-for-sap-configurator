@@ -13,7 +13,7 @@
   
 <body>
   <h1>RHEL for SAP Configurator</h1>
-  <p><i>v1.5.2 - June 13, 2020</i><br>
+  <p><i>v1.5.6 - July 08, 2020</i><br>
   Click on any button to display resources, subscriptions, repositories, and commands for this combination. Results will be shown after one button in each line is selected.<br>
 <b>Note: This tool comes without support.</b> You still have to check supported release combinations in the <a href="https://apps.support.sap.com/sap/support/pam">SAP PAM</a>, the SAP HANA hardware directory, and/or other applicable sources.<br>
 <b>Citation:</b> Please discuss any results you get from using this tool primarily by using the referenced documents.<br>
@@ -72,6 +72,13 @@
     <label for="id_HA_on">HA</label>
     <input type="radio" id="id_HA_off" name="haSelect" value="no HA" onclick="displayResults()">
     <label for="id_HA_off">no HA</label>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <input type="radio" id="id_Cloud_off" name="cloudSelect" value="no Cloud" onclick="displayResults()" checked>
+    <label for="id_Cloud_off">no Cloud</label>
+    <input type="radio" id="id_Cloud_on" name="cloudSelect" value="Cloud" onclick="displayResults()">
+    <label for="id_Cloud_on">Cloud</label>
   </div>
 <!---
   <button class="top30" type="button" onclick="displaySelections()"> 
