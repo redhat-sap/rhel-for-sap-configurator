@@ -145,7 +145,7 @@ function displayResults() {
             document.getElementById("idResources").innerHTML = 
 "<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" + 
 "<a href=\"https://launchpad.support.sap.com/#/notes/1496410\">SAP note 1496410</a> - Red Hat Enterprise Linux 6.x: Installation and Upgrade" + "<br>" +
-"<a href=\"https://launchpad.support.sap.com/#/notes/2013638\">SAP note 2292690</a> - SAP HANA DB: Recommended OS settings for RHEL 6.5" + "<br>";
+"<a href=\"https://launchpad.support.sap.com/#/notes/2013638\">SAP note 2013638</a> - SAP HANA DB: Recommended OS settings for RHEL 6.5" + "<br>";
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 up to SPS11</a>" + ".&nbsp;" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2021789\">Latest rev: HANA 1.0 SPS11 rev 112.07</a>" + "<br>" +
 "HANA 1.0 SPS11: gcc version unknown.<br>";
