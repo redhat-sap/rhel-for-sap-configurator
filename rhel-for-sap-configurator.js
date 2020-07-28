@@ -27,7 +27,7 @@
 // v1.5.6: no need to use eus for SAP NW on RHEL 7
 //       Tue 08 Jul 2020
 // v1.5.7: added RHEL 7.7
-//       Mon 27 Jul 2020
+//       Mon 28 Jul 2020
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -254,7 +254,9 @@ function displayResults() {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-957</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available; support ends October 31, 2022</a>";
          }
          else if (vRHEL == "7.7") {
-	    _exs="e4s";
+            document.getElementById("id_Cloud_on").disabled = true;
+            document.getElementById("id_Cloud_off").checked = true;
+            vCloud = "no Cloud";
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 SPS12 rev 122.30 and newer</a>" + ".&nbsp;" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.31</a>" + "<br>" +
 "HANA 1.0 SPS12: <b>gcc 4</b>.<br>";
@@ -439,13 +441,10 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available; support ends October 31, 2022</a>";
                }
                else if (vRHEL == "7.7") {
-                  if (vCloud == "no Cloud") {
-		     _rhui_ext = "";
-		  }
-		  else {
-		     _rhui_ext = "";
-//		     _rhui_ext = "__7_DOT_7__x86_64";
-		  }
+                  document.getElementById("id_Cloud_on").disabled = true;
+                  document.getElementById("id_Cloud_off").checked = true;
+		  vCloud = "no Cloud";
+		  _rhui_ext = "";
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS04 rev 48 and newer</a>" + ".&nbsp;" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 50</a>" + "<br>" +
 "HANA 2.0 SPS04: <b><a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a></b>. SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
