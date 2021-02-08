@@ -38,6 +38,8 @@
 //       Wed 07 Oct 2020
 // v1.5.12: SAP HANA on RHEL 8.2 support, plus some other updates
 //       Thu 28 Jan 2021
+// v1.5.13: SAP note 2378962: last SPS05 is now rev 054
+//       Mon 08 Feb 2021
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -130,6 +132,7 @@ function displayResults() {
    document.getElementById("id_80").disabled = false;
    document.getElementById("id_81").disabled = false;
    document.getElementById("id_82").disabled = false;
+   document.getElementById("id_83").disabled = false;
    document.getElementById("id_Cloud_on").disabled = false;
    if (vArch == "ppc64le") {
       document.getElementById("id_72").disabled = true;
@@ -145,6 +148,7 @@ function displayResults() {
       document.getElementById("id_80").disabled = true;
       document.getElementById("id_81").disabled = true;
       document.getElementById("id_82").disabled = true;
+      document.getElementById("id_83").disabled = true;
       if (vRHELmajor == "6") {
          document.getElementById("id_Cloud_on").disabled = true;
          document.getElementById("id_Cloud_off").checked = true;
@@ -455,7 +459,7 @@ function displayResults() {
 //		     _rhui_ext = "__7_DOT_6__x86_64";
 		  }
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS03 rev 36 and newer</a>" + ".&nbsp;" +
-"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 53</a>" + "<br>" +
+"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 54</a>" + "<br>" +
 "HANA 2.0 SPS03: <b><a href=\"https://launchpad.support.sap.com/#/notes/2455582\">gcc 6</a></b>. SPS04: <b><a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a></b>. SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
                   document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-957</a>. " +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2812427\">Minimum required: 3.10.0-957.35.1</a>. " +
@@ -467,7 +471,7 @@ function displayResults() {
 		  vCloud = "no Cloud";
 		  _rhui_ext = "";
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS04 rev 48 and newer</a>" + ".&nbsp;" +
-"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 53</a>" + "<br>" +
+"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 54</a>" + "<br>" +
 "HANA 2.0 SPS04: <b><a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a></b>. SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
                   document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1062</a>. " +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2292690\">Minimum required: 3.10.0-1062.21.1</a>. " +
@@ -555,7 +559,7 @@ function displayResults() {
                   }
                   else if (vRHEL == "7.6") {
                      document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS03 rev 36 and newer</a>" + ".&nbsp;" + 
-"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 53</a>" + "<br>" +
+"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 54</a>" + "<br>" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2055470\">Only on POWER8</a>. HANA 2.0 SPS03: <b><a href=\"https://launchpad.support.sap.com/#/notes/2455582\">gcc 6</a></b>. SPS04: <b><a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a></b>. SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
                      document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-957</a>. " +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2812427\">Minimum required: 3.10.0-957.35.1</a>. " +
@@ -563,7 +567,7 @@ function displayResults() {
                   }
                   else if (vRHEL == "7.7") {
                      document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS04 rev 48 and newer</a>" + ".&nbsp;" + 
-"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 53</a>" + "<br>" +
+"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 54</a>" + "<br>" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2055470\">Only on POWER8</a>. HANA 2.0 SPS04: <b><a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a></b>. SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
                      document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1062</a>. " +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2292690\">Minimum required: 3.10.0-1062.26.1</a>. " +
@@ -749,7 +753,7 @@ function displayResults() {
 //	    	      _rhui_ext = "-" + vRHEL;
             	   }
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS04 rev 45 and newer</a>" + ".&nbsp;" +
-"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 53</a>" + "<br>" +
+"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 54</a>" + "<br>" +
 "HANA 2.0 SPS04: <b><a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a></b>. SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
                   document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-147</a>. " +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2777782\">Minimum required: 4.18.0-147.5.1.el8_1</a>. " +
@@ -766,7 +770,7 @@ function displayResults() {
 //	    	      _rhui_ext = "-" + vRHEL;
             	   }
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS04 rev 48.02 and newer and SPS05 rev 52 and newer</a>" + ".&nbsp;" +
-"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 53</a>" + "<br>" +
+"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 54</a>" + "<br>" +
 "HANA 2.0 SPS04: <b><a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a></b>. SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
                   document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-193</a>. " +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2777782\">Minimum required: 4.18.0-193.40.1.el8_2</a>. " +
@@ -819,7 +823,7 @@ function displayResults() {
                }
                else if (vRHEL == "8.1") {
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS04 rev 45 and newer</a>" + ".&nbsp;" +
-"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 53</a>" + "<br>" +
+"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 54</a>" + "<br>" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2055470\">Only on POWER9</a>. HANA 2.0 SPS04: <b><a href=\"https://launchpad.support.sap.com/#/notes/2593824\"><a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a></a></b>. SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
                   document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-147</a>. " +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2777782\">Minimum required: 4.18.0-147.5.1.el8_1</a>. " +
@@ -827,7 +831,7 @@ function displayResults() {
                }
                else if (vRHEL == "8.2") {
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS04 rev 48.02 and newer and SPS05 rev 52 and newer</a>" + ".&nbsp;" +
-"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 53</a>" + "<br>" +
+"<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 54</a>" + "<br>" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2055470\">Only on POWER9</a>. HANA 2.0 SPS04: <b><a href=\"https://launchpad.support.sap.com/#/notes/2593824\"><a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a></a></b>. SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
                   document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-193</a>. " +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2777782\">Minimum required: 4.18.0-193.40.1.el8_2</a>. " +
