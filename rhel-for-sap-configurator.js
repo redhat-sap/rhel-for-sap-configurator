@@ -42,6 +42,8 @@
 //       Mon 08 Feb 2021
 // v1.5.14: SAP HANA on RHEL 7.9 support
 //       Thu 12 Feb 2021
+// v1.5.15: Added more text to 6.10 and 7.9 eus and e4s repos; fixed incorrect HANA 2 SPS04 string and remove e4s from repo names for RHEL 7.9
+//       Mon 15 Feb 2021
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -195,7 +197,7 @@ function displayResults() {
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 SPS12 rev 122.23 and newer</a>" + ".&nbsp;" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.30</a>" + "<br>" +
 "HANA 1.0 SPS12: <b>gcc 4</b>.<br>";
-            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.4</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL6\">Kernel Version: 2.6.32-754</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S not available; end of Maintenance Support 2 November 30, 2020; end of Extended Life-cycle Support June 30, 2024</a>";
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.4</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL6\">Kernel Version: 2.6.32-754</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S and EUS not available and not required; end of Maintenance Support 2 November 30, 2020; end of Extended Life-cycle Support June 30, 2024</a>";
          }
          if (vHA == "HA") {
 	    document.getElementById("idResources").innerHTML +=
@@ -287,7 +289,7 @@ function displayResults() {
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 1.0 SPS12 rev 122.33 and newer</a>" + ".&nbsp;" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.34</a>" + "<br>" +
 "HANA 1.0 SPS12: <b>gcc 4</b>.<br>";
-            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1160</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S not required; end of Maintenance Support June 30, 2024; end of Extended Life-cycle Support TBD</a>";
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1160</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S and EUS not available and not required; end of Maintenance Support June 30, 2024; end of Extended Life-cycle Support TBD</a>";
          }
      	 if (vCloud == "no Cloud") {
      	    _rhui=""
@@ -300,6 +302,9 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
 	    _ha = "rhel-ha-for-rhel-7-server-" + _exs + _rhui + "-rpms";
+            if (vRHEL == "7.9") {
+               _ha = "rhel-ha-for-rhel-7-server" + _rhui + "-rpms" + _rhui_ext;
+            }
             _haRepo = "<br>" + _ha + "<br>";
             _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
          }
@@ -319,6 +324,18 @@ function displayResults() {
               "--enable=\"" + "rhel-7-server-" + _exs + "-rpms" + "\" \\<br>" +
               "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-" + _exs + "-rpms" + "\"" +
               _haText;
+            if (vRHEL == "7.9") {
+               document.getElementById("idRepos").innerHTML = 
+                 "rhel-7-server-rpms" + "<br>" +
+                 "rhel-sap-hana-for-rhel-7-server-rpms" +
+                 _haRepo +
+                 "<br><br>";
+               document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
+                 "subscription-manager repos \\<br>" +
+                 "--enable=\"" + "rhel-7-server-rpms" + "\" \\<br>" +
+                 "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-rpms" + "\"" +
+                 _haText;
+            }
      	 }
 	 else {
 	    if (vRHEL == "7.5") {
@@ -483,10 +500,10 @@ function displayResults() {
                   document.getElementById("id_Cloud_off").checked = true;
 		  vCloud = "no Cloud";
 		  _rhui_ext = "";
-                  document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS04 rev 54 and newer</a>" + ".&nbsp;" + 
+                  document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS05 rev 54 and newer</a>" + ".&nbsp;" + 
 "<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 54</a>" + "<br>" +
 "HANA 2 SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
-                  document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1160</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S not required; end of Maintenance Support June 30, 2024; end of Extended Life-cycle Support TBD</a>";
+                  document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1160</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S and EUS not available and not required; end of Maintenance Support June 30, 2024; end of Extended Life-cycle Support TBD</a>";
                }
      	       if (vCloud == "no Cloud") {
      	    	  _rhui=""
@@ -499,6 +516,9 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
                   _ha = "rhel-ha-for-rhel-7-server-e4s" + _rhui + "-rpms" + _rhui_ext;
+                  if (vRHEL == "7.9") {
+                     _ha = "rhel-ha-for-rhel-7-server" + _rhui + "-rpms" + _rhui_ext;
+                  }
 		  _haRepo = "<br>" + _ha + "<br>";
                   _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
                }
@@ -518,6 +538,18 @@ function displayResults() {
                     "--enable=\"" + "rhel-7-server-e4s-rpms" + "\" \\<br>" +
                     "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-e4s-rpms" + "\"" +
                     _haText;
+                  if (vRHEL == "7.9") {
+                     document.getElementById("idRepos").innerHTML = 
+                       "rhel-7-server-rpms" + "<br>" +
+                       "rhel-sap-hana-for-rhel-7-server-rpms" +
+                       _haRepo +
+                       "<br><br>";
+                     document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
+                       "subscription-manager repos \\<br>" +
+                       "--enable=\"" + "rhel-7-server-rpms" + "\" \\<br>" +
+                       "--enable=\"" + "rhel-sap-hana-for-rhel-7-server-rpms" + "\"" +
+                       _haText;
+                  }
                }
 	       else {
                   document.getElementById("idRepos").innerHTML = 
@@ -585,16 +617,20 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available; support ends August 30, 2023</a>";
                   }
                   else if (vRHEL == "7.9") {
-                     document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS04 rev 54 and newer</a>" + ".&nbsp;" + 
+                     document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS05 rev 54 and newer</a>" + ".&nbsp;" + 
 "<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: HANA 2.0 SPS05 rev 54</a>" + "<br>" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2055470\">Only on POWER8</a>. HANA 2 SPS05: <b><a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a></b>.<br>";
-                     document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1160</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S not required; end of Maintenance Support June 30, 2024; end of Extended Life-cycle Support TBD</a>";
+                     document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1160</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S and EUS not available and not required; end of Maintenance Support June 30, 2024; end of Extended Life-cycle Support TBD</a>";
                   }
                   if (vHA == "HA") {
 	             document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>";
                      _haRepo = "<br>" + "rhel-ha-for-rhel-7-for-power-le-e4s-rpms" + "<br>";
                      _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-for-power-le-e4s-rpms" + "\"";
+                     if (vRHEL == "7.9") {
+                        _haRepo = "<br>" + "rhel-ha-for-rhel-7-for-power-le-rpms" + "<br>";
+                        _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-for-power-le-rpms" + "\"";
+                     }
                   }
 	          else {
 	             document.getElementById("idResources").innerHTML +=
@@ -610,6 +646,18 @@ function displayResults() {
                     "--enable=\"" + "rhel-7-for-power-le-e4s-rpms" + "\"  \\<br>" +
                     "--enable=\"" + "rhel-sap-hana-for-rhel-7-for-power-le-e4s-rpms" + "\"" +
                     _haText;
+                  if (vRHEL == "7.9") {
+                     document.getElementById("idRepos").innerHTML = 
+                       "rhel-7-for-power-le-rpms" + "<br>" +
+                       "rhel-sap-hana-for-rhel-7-for-power-le-rpms" +
+                       _haRepo +
+                       "<br><br>";
+                     document.getElementById("idSubsriptionManagerReposEnable").innerHTML = 
+                       "subscription-manager repos \\<br>" +
+                       "--enable=\"" + "rhel-7-for-power-le-rpms" + "\" \\<br>" +
+                       "--enable=\"" + "rhel-sap-hana-for-rhel-7-for-power-le-rpms" + "\"" +
+                       _haText;
+                  }
                }
             }
          }
@@ -902,7 +950,7 @@ function displayResults() {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.4</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL6\">Kernel Version: 2.6.32-573</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S not required; end of Maintenance Support 2 November 30, 2020; end of Extended Life-cycle Support June 30, 2024</a>";
          }
          else if (vRHEL == "6.10") {
-            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.4</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL6\">Kernel Version: 2.6.32-754</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S not required; end of Maintenance Support 2 November 30, 2020; end of Extended Life-cycle Support June 30, 2024</a>";
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.4</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL6\">Kernel Version: 2.6.32-754</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S and EUS not available and not required; end of Maintenance Support 2 November 30, 2020; end of Extended Life-cycle Support June 30, 2024</a>";
          }
          document.getElementById("id_ppc64le").disabled = true;
          if (vArch == "x86_64") {
@@ -1030,7 +1078,7 @@ function displayResults() {
             document.getElementById("id_Cloud_on").disabled = true;
             document.getElementById("id_Cloud_off").checked = true;
             vCloud = "no Cloud";
-            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1160</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S not required; end of Maintenance Support June 30, 2024; end of Extended Life-cycle Support TBD</a>";
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1160</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S and EUS not available and not required; end of Maintenance Support June 30, 2024; end of Extended Life-cycle Support TBD</a>";
          }
          if (vCloud == "no Cloud") {
 	    _rhui="";
