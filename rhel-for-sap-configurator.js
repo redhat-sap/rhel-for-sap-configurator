@@ -46,6 +46,8 @@
 //       Mon 15 Feb 2021
 // v1.5.16: Modified the last released HANA 2 revisions; also display compat-sap-c++-* install requirements; prepared for RHEL 8.4
 //       Tue 18 May 2021
+// v1.5.17: Minor fix for the correct RHEL 8.4 GA kernel
+//       Tue 18 May 2021
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -952,7 +954,7 @@ function displayResults() {
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 is not yet supported for RHEL " + vRHEL + "</a>" + "<br><br>";
             document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
             document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
-            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-304</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S available</a>";
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-305</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S available</a>";
      	    document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
      	    document.getElementById("titleCommands").innerHTML = "";
      	    document.getElementById("idRepos").innerHTML = "";
@@ -1314,7 +1316,7 @@ function displayResults() {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-240</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available; support ends April 30, 2021</a>";
          }
          else if (vRHEL == "8.4") {
-            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-304</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not required</a>";
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-305</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not required</a>";
          }
          _baseos="-baseos";
          _appstream="-appstream";
