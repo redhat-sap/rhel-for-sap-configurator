@@ -50,6 +50,8 @@
 //       Tue 18 May 2021
 // v1.5.18: SAP note 2378962: last SPS05 is now rev 056. Enabled the button "7.8".
 //       Tue 06 Jul 2021
+// v1.5.19: Improved the usage text
+//       Tue 06 Jul 2021
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
