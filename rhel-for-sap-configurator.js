@@ -48,6 +48,8 @@
 //       Tue 18 May 2021
 // v1.5.17: Minor fix for the correct RHEL 8.4 GA kernel
 //       Tue 18 May 2021
+// v1.5.18: SAP note 2378962: last SPS05 is now rev 056. Enabled the button "7.8".
+//       Tue 06 Jul 2021
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -87,7 +89,7 @@ function displayResults() {
    _haText = "<br><br>";
    last_hana2_sps03 = "HANA 2.0 SPS03 rev 37.07";
    last_hana2_sps04 = "HANA 2.0 SPS04 rev 48.05";
-   last_hana2_sps05 = "HANA 2.0 SPS05 rev 55";
+   last_hana2_sps05 = "HANA 2.0 SPS05 rev 56";
    gcc5_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2338763\">gcc 5</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-5</a>";
    gcc6_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2455582\">gcc 6</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-6</a>";
    gcc7_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-7</a>";
@@ -161,7 +163,6 @@ function displayResults() {
       document.getElementById("id_ppc64le").disabled = true;
       document.getElementById("id_s390x").disabled = true;
       document.getElementById("id_x86_64").checked = true;
-      document.getElementById("id_78").disabled = true;
       document.getElementById("id_80").disabled = true;
       document.getElementById("id_81").disabled = true;
       document.getElementById("id_82").disabled = true;
@@ -401,7 +402,6 @@ function displayResults() {
       document.getElementById("id_66").disabled = true;
       document.getElementById("id_67").disabled = true;
       document.getElementById("id_610").disabled = true;
-      document.getElementById("id_78").disabled = true;
       document.getElementById("idSubscription").innerHTML = "<a href=\"https://access.redhat.com/solutions/3082481\">Red Hat Enterprise Linux for SAP Solutions</a>";
       if (vArch == "ppc64" || vArch == "s390x") {
      	 document.getElementById("titleRepos").innerHTML = vSAP + " is not supported on " + vArch + ".";
