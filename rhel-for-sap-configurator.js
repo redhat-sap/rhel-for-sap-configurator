@@ -58,6 +58,8 @@
 //       Wed Sep  1 2021
 // v1.5.22: SAP note 2235581: Support for SAP HANA on RHEL 8.4 on ppc64le; modified EOSL dates
 //       Wed Sep 29 2021
+// v1.5.23: SAP note 2378962: last SPS05 rev is now 058.
+//       Thu Oct 14 2021
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -92,7 +94,7 @@ function displayResults() {
    _haText = "<br><br>";
    last_hana2_sps03 = "HANA 2.0 SPS03 rev 37.07";
    last_hana2_sps04 = "HANA 2.0 SPS04 rev 48.06";
-   last_hana2_sps05 = "HANA 2.0 SPS05 rev 57";
+   last_hana2_sps05 = "HANA 2.0 SPS05 rev 58";
    gcc5_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2338763\">gcc 5</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-5</a>";
    gcc6_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2455582\">gcc 6</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-6</a>";
    gcc7_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-7</a>";
