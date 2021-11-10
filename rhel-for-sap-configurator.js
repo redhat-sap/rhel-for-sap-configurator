@@ -60,6 +60,8 @@
 //       Wed Sep 29 2021
 // v1.5.23: SAP note 2378962: last SPS05 rev is now 058.
 //       Thu Oct 14 2021
+// v1.5.24: added RHEL 8.5
+//       Wed Nov 10 2021
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -157,6 +159,7 @@ function displayResults() {
    document.getElementById("id_82").disabled = false;
    document.getElementById("id_83").disabled = false;
    document.getElementById("id_84").disabled = false;
+   document.getElementById("id_85").disabled = false;
    document.getElementById("id_Cloud_on").disabled = false;
    if (vArch == "ppc64le") {
       document.getElementById("id_72").disabled = true;
@@ -173,9 +176,11 @@ function displayResults() {
       document.getElementById("id_82").disabled = true;
       document.getElementById("id_83").disabled = true;
       document.getElementById("id_84").disabled = true;
+      document.getElementById("id_85").disabled = true;
       if (vRHELmajor == "6") {
          document.getElementById("id_Cloud_on").disabled = true;
          document.getElementById("id_Cloud_off").checked = true;
+         document.getElementById("idSubscription").innerHTML = "<a href=\"https://access.redhat.com/solutions/3082481\">Red Hat Enterprise Linux for SAP Solutions</a>";
          document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
          document.getElementById("idSubsriptionManagerReleaseSet").innerHTML =
          "subscription-manager release --set=" + vRHEL;
@@ -250,6 +255,7 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/solutions/3075991\">Red Hat KB 3075991</a> - How to subscribe SAP HANA systems to the Update Services for SAP Solutions" + "<br>" + 
 "<a href=\"https://launchpad.support.sap.com/#/notes/2002167\">SAP note 2002167</a> - Red Hat Enterprise Linux 7.x: Installation and Upgrade" + "<br>" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2292690\">SAP note 2292690</a> - SAP HANA DB: Recommended OS settings for RHEL 7" + "<br>"
+         document.getElementById("idSubscription").innerHTML = "<a href=\"https://access.redhat.com/solutions/3082481\">Red Hat Enterprise Linux for SAP Solutions</a>";
          document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
          document.getElementById("idSubsriptionManagerReleaseSet").innerHTML =
          "subscription-manager release --set=" + vRHEL;
@@ -971,11 +977,17 @@ function displayResults() {
                  _haText;
             }
          }
-         else if (vRHEL == "8.3") {
+         else if (vRHEL == "8.3" || vRHEL == "8.5") {
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 is not supported for RHEL " + vRHEL + "</a>" + "<br><br>";
             document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
+            document.getElementById("idSubscription").innerHTML = "";
             document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
-            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-240</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available; support ended April 30, 2021</a>";
+            if (vRHEL == "8.3") {
+               document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-240</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available; support ended April 30, 2021</a>";
+            }
+            else if (vRHEL == "8.5") {
+               document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-348</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available; support ends April 30, 2022</a>";
+            }
             document.getElementById("titleRepos").innerHTML = vSAP + " is not supported for RHEL " + vRHEL + ".";
             document.getElementById("titleCommands").innerHTML = "";
             document.getElementById("idRepos").innerHTML = "";
@@ -1338,6 +1350,9 @@ function displayResults() {
          }
          else if (vRHEL == "8.4") {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-305</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not required</a>";
+         }
+         else if (vRHEL == "8.5") {
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-348</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available; support ends April 30, 2022</a>";
          }
          _baseos="-baseos";
          _appstream="-appstream";
