@@ -62,6 +62,8 @@
 //       Thu Oct 14 2021
 // v1.5.24: added RHEL 8.5
 //       Wed Nov 10 2021
+// v1.5.25: SAP note 2378962: last SPS05 rev is now 059.
+//       Fri Nov 19 2021
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -69,22 +71,22 @@ function displaySelections() {
     if(elem[i].checked) 
     document.getElementById("result1").innerHTML = "SAP: "+elem[i].value;
   } 
-  var elem = document.getElementsByName('archSelect'); 
+  elem = document.getElementsByName('archSelect'); 
   for(i = 0; i < elem.length; i++) { 
     if(elem[i].checked) 
     document.getElementById("result2").innerHTML = "Arch: "+elem[i].value;
   } 
-  var elem = document.getElementsByName('rhelSelect'); 
+  elem = document.getElementsByName('rhelSelect'); 
   for(i = 0; i < elem.length; i++) { 
     if(elem[i].checked) 
     document.getElementById("result3").innerHTML = "RHEL: "+elem[i].value;
   } 
-  var elem = document.getElementsByName('haSelect'); 
+  elem = document.getElementsByName('haSelect'); 
   for(i = 0; i < elem.length; i++) { 
     if(elem[i].checked) 
     document.getElementById("result4").innerHTML = "HA: "+elem[i].value;
   } 
-  var elem = document.getElementsByName('cloudSelect'); 
+  elem = document.getElementsByName('cloudSelect'); 
   for(i = 0; i < elem.length; i++) { 
     if(elem[i].checked) 
     document.getElementById("result5").innerHTML = "Cloud: "+elem[i].value;
@@ -96,7 +98,7 @@ function displayResults() {
    _haText = "<br><br>";
    last_hana2_sps03 = "HANA 2.0 SPS03 rev 37.07";
    last_hana2_sps04 = "HANA 2.0 SPS04 rev 48.06";
-   last_hana2_sps05 = "HANA 2.0 SPS05 rev 58";
+   last_hana2_sps05 = "HANA 2.0 SPS05 rev 59";
    gcc5_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2338763\">gcc 5</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-5</a>";
    gcc6_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2455582\">gcc 6</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-6</a>";
    gcc7_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-7</a>";
@@ -111,7 +113,7 @@ function displayResults() {
   for(i = 0; i < elem.length; i++) { 
     if(elem[i].checked) vSAP=elem[i].value;
   }
-  var elem = document.getElementsByName('archSelect'); 
+  elem = document.getElementsByName('archSelect'); 
   for(i = 0; i < elem.length; i++) { 
     if(elem[i].checked) vArch=elem[i].value;
   }
@@ -121,17 +123,17 @@ function displayResults() {
   else if (vArch == "ppc64") {vArch7 = "for-power"}
   else if (vArch == "s390x") {vArch7 = "for-system-z"}
 //  alert ("vArch = " + vArch + "; vArch7 = " + vArch7);
-  var elem = document.getElementsByName('rhelSelect'); 
+  elem = document.getElementsByName('rhelSelect'); 
   for(i = 0; i < elem.length; i++) { 
     if(elem[i].checked) vRHEL=elem[i].value;
   }
   var vRHELmajor = vRHEL.substr(0,1);
 //  alert ("vRHELmajor = " + vRHELmajor);
-  var elem = document.getElementsByName('haSelect'); 
+  elem = document.getElementsByName('haSelect'); 
   for(i = 0; i < elem.length; i++) { 
     if(elem[i].checked) vHA=elem[i].value;
   } 
-  var elem = document.getElementsByName('cloudSelect'); 
+  elem = document.getElementsByName('cloudSelect'); 
   for(i = 0; i < elem.length; i++) { 
     if(elem[i].checked) vCloud=elem[i].value;
   } 
