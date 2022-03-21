@@ -70,6 +70,8 @@
 //       Thu Jan 20 2022
 // v1.5.28: SAP note 2378962 (new version 90): last SPS06 rev is now 061.
 //       Thu Feb 16 2022
+// v1.5.29: Fixed wrong HA repo names and removed some nonexistent HA repos in RHEL 6 and RHEL 7.
+//       Mon Mar 21 2022
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -666,11 +668,11 @@ function displayResults() {
                   if (vHA == "HA") {
                      document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>";
-                     _haRepo = "<br>" + "rhel-ha-for-rhel-7-for-power-le-e4s-rpms" + "<br>";
-                     _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-for-power-le-e4s-rpms" + "\"";
+                     _haRepo = "<br>" + "rhel-ha-for-rhel-7-server-for-power-le-e4s-rpms" + "<br>";
+                     _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-server-for-power-le-e4s-rpms" + "\"";
                      if (vRHEL == "7.9") {
-                        _haRepo = "<br>" + "rhel-ha-for-rhel-7-for-power-le-rpms" + "<br>";
-                        _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-for-power-le-rpms" + "\"";
+                        _haRepo = "<br>" + "rhel-ha-for-rhel-7-server-for-power-le-rpms" + "<br>";
+                        _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-server-for-power-le-rpms" + "\"";
                      }
                   }
                   else {
@@ -1069,8 +1071,8 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>" +
 "<br>";
-               _haRepo = "<br>" + "rhel-ha-for-rhel-6-for-power-rpms" + "<br>";
-               _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-6-for-power-rpms" + "\"";
+               _haRepo = "<br>" + "<br>";
+               _haText = "";
             }
             else {
                document.getElementById("idResources").innerHTML += "<br>" +
@@ -1094,8 +1096,8 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>" +
 "<br>";
-               _haRepo = "<br>" + "rhel-ha-for-rhel-6-for-system-z-rpms" + "<br>";
-               _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-6-for-system-z-rpms" + "\"";
+               _haRepo = "<br>" + "<br>";
+               _haText = "";
             }
             else {
                document.getElementById("idResources").innerHTML += "<br>" +
@@ -1258,13 +1260,13 @@ function displayResults() {
             }
             else {
                if (vHA == "HA") {
-             document.getElementById("idResources").innerHTML +=
+                  document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>" +
 "<br>";
-                  _ha = "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
-             _haRepo = "<br>" + _ha + "<br>";
-             _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
+                  _ha = "rhel-ha-for-rhel-7-server-" + vArch7 + "-" + _rhui + "rpms";
+                  _haRepo = "<br>" + _ha + "<br>";
+                  _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
                }
           else {
              document.getElementById("idResources").innerHTML += "<br>" +
@@ -1292,7 +1294,7 @@ function displayResults() {
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>" +
 "<br>";
-               _ha = "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
+               _ha = ""
                _haRepo = "<br>" + _ha + "<br>";
                _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
             }
