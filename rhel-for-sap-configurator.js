@@ -78,6 +78,8 @@
 //       Thu May 05 2022
 // v1.5.32: SAP note 2378962: last SPS05 rev is now 059.03.
 //       Wed May 11 2022
+// v1.5.33: Added RHEL 8.6.
+//       Wed May 11 2022
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -178,6 +180,7 @@ function displayResults() {
    document.getElementById("id_83").disabled = false;
    document.getElementById("id_84").disabled = false;
    document.getElementById("id_85").disabled = false;
+   document.getElementById("id_86").disabled = false;
    document.getElementById("id_Cloud_on").disabled = false;
    if (vArch == "ppc64le") {
       document.getElementById("id_72").disabled = true;
@@ -195,6 +198,7 @@ function displayResults() {
       document.getElementById("id_83").disabled = true;
       document.getElementById("id_84").disabled = true;
       document.getElementById("id_85").disabled = true;
+      document.getElementById("id_86").disabled = true;
       if (vRHELmajor == "6") {
          document.getElementById("id_Cloud_on").disabled = true;
          document.getElementById("id_Cloud_off").checked = true;
@@ -818,7 +822,8 @@ function displayResults() {
          else if (vRHEL == "8.0" ||
                   vRHEL == "8.1" ||
                   vRHEL == "8.2" ||
-                  vRHEL == "8.4") {
+                  vRHEL == "8.4" ||
+                  vRHEL == "8.6") {
             document.getElementById("idResources").innerHTML =
 "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8" + "<br>" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2772999\">SAP note 2772999</a> - Red Hat Enterprise Linux 8.x: Installation and Configuration" + "<br>" +
@@ -898,31 +903,57 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2777782\">Minimum required: 4.18.0-305.3.1.el8_4</a>. " +
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available; support ends May 30, 2025</a>";
                }
+               else if (vRHEL == "8.6") {
+                   if (vCloud == "no Cloud") {
+                      _rhui=""
+                      _rhui_ext = "";
+                   }
+                   else {
+                      _rhui="-rhui"
+                      _rhui_ext = "";
+//                      _rhui_ext = "-" + vRHEL;
+                  }
+                  document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 is not yet supported for RHEL 8.6" + ".<br>" + "<br>";
+                  document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-372</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available.</a>";
+                  document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
+                  document.getElementById("idSubscription").innerHTML = "";
+                  document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
+                  document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
+                  document.getElementById("titleCommands").innerHTML = "";
+                  document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+               }
                if (vHA == "HA") {
-             document.getElementById("idResources").innerHTML +=
+                  if (vRHEL != "8.6") {
+                     document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
 "<br>";
-                  _ha = "rhel-8-for-" + vArch + "-highavailability-e4s" + _rhui + "-rpms" + _rhui_ext;
-                  _haRepo = "<br>" + _ha + "<br>";
-                  _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
+                     _ha = "rhel-8-for-" + vArch + "-highavailability-e4s" + _rhui + "-rpms" + _rhui_ext;
+                     _haRepo = "<br>" + _ha + "<br>";
+                     _haText = " \\<br>" + "--enable=\"" + _ha + "\"";
+                  }
                }
                else {
-                  document.getElementById("idResources").innerHTML += "<br>" +
+                  if (vRHEL != "8.6") {
+                     document.getElementById("idResources").innerHTML += "<br>" +
 "<br>";
+                  }
                }
-               document.getElementById("idRepos").innerHTML =
-                 "rhel-8-for-" + vArch + _baseos + "-e4s" + _rhui + "-rpms" + _rhui_ext + "<br>" +
-                 "rhel-8-for-" + vArch + _appstream + "-e4s" + _rhui + "-rpms" + _rhui_ext + "<br>" +
-                 "rhel-8-for-" + vArch + _sap_solutions + "-e4s" + _rhui + "-rpms" + _rhui_ext + "<br>" +
-                 "rhel-8-for-" + vArch + _sap_netweaver + "-e4s" + _rhui + "-rpms" + _rhui_ext +
-                 _haRepo;
-               document.getElementById("idSubsriptionManagerReposEnable").innerHTML =
-                 "subscription-manager repos \\<br>" +
-                 "--enable=\"" + "rhel-8-for-" + vArch + _baseos + "-e4s" + _rhui + "-rpms" + _rhui_ext + "\" \\<br>" +
-                 "--enable=\"" + "rhel-8-for-" + vArch + _appstream + "-e4s" + _rhui + "-rpms" + _rhui_ext + "\" \\<br>" +
-                 "--enable=\"" + "rhel-8-for-" + vArch + _sap_solutions + "-e4s" + _rhui + "-rpms" + _rhui_ext + "\" \\<br>" +
-                 "--enable=\"" + "rhel-8-for-" + vArch + _sap_netweaver + "-e4s" + _rhui + "-rpms" + _rhui_ext + "\"" +
-                 _haText;
+               if (vRHEL != "8.6") {
+                  document.getElementById("idRepos").innerHTML =
+                    "rhel-8-for-" + vArch + _baseos + "-e4s" + _rhui + "-rpms" + _rhui_ext + "<br>" +
+                    "rhel-8-for-" + vArch + _appstream + "-e4s" + _rhui + "-rpms" + _rhui_ext + "<br>" +
+                    "rhel-8-for-" + vArch + _sap_solutions + "-e4s" + _rhui + "-rpms" + _rhui_ext + "<br>" +
+                    "rhel-8-for-" + vArch + _sap_netweaver + "-e4s" + _rhui + "-rpms" + _rhui_ext +
+                    _haRepo;
+                  document.getElementById("idSubsriptionManagerReposEnable").innerHTML =
+                    "subscription-manager repos \\<br>" +
+                    "--enable=\"" + "rhel-8-for-" + vArch + _baseos + "-e4s" + _rhui + "-rpms" + _rhui_ext + "\" \\<br>" +
+                    "--enable=\"" + "rhel-8-for-" + vArch + _appstream + "-e4s" + _rhui + "-rpms" + _rhui_ext + "\" \\<br>" +
+                    "--enable=\"" + "rhel-8-for-" + vArch + _sap_solutions + "-e4s" + _rhui + "-rpms" + _rhui_ext + "\" \\<br>" +
+                    "--enable=\"" + "rhel-8-for-" + vArch + _sap_netweaver + "-e4s" + _rhui + "-rpms" + _rhui_ext + "\"" +
+                    _haText;
+               }
                if (vCloud == "Cloud") {
                   document.getElementById("titleCommands").innerHTML = "";
                   document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
@@ -967,32 +998,49 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: " + last_hana2_sps06 + "</a>." + "<br>" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2055470\">Only on POWER9</a>. " +
 "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_req + ". <b>SPS06</b>: " + gcc10_compat_sap_req + ".<br>";
-                  document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-193</a>. " +
+                  document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-305</a>. " +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2777782\">Minimum required: 4.18.0-305.17.1.el8_4</a>. " +
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available; support ends May 30, 2025</a>";
                }
+               else if (vRHEL == "8.6") {
+                  document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 is not yet supported for RHEL 8.6" + ".<br>" + "<br>";
+                  document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-372</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available.</a>";
+                  document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
+                  document.getElementById("idSubscription").innerHTML = "";
+                  document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
+                  document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
+                  document.getElementById("titleCommands").innerHTML = "";
+                  document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+               }
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
+                  if (vRHEL != "8.6") {
+                     document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>";
-                  _haRepo = "<br>" +"rhel-8-for-ppc64le-highavailability-e4s-rpms" + "<br>"; 
-                  _haText = " \\<br>" + "--enable=\"" + "rhel-8-for-ppc64le-highavailability-e4s-rpms" + "\"";
+                     _haRepo = "<br>" +"rhel-8-for-ppc64le-highavailability-e4s-rpms" + "<br>"; 
+                     _haText = " \\<br>" + "--enable=\"" + "rhel-8-for-ppc64le-highavailability-e4s-rpms" + "\"";
+                  }
                }
                else {
-                  document.getElementById("idResources").innerHTML += "<br>";
+                  if (vRHEL != "8.6") {
+                     document.getElementById("idResources").innerHTML += "<br>";
+                  }
                }
-               document.getElementById("idRepos").innerHTML =
-                 "rhel-8-for-ppc64le-baseos-e4s-rpms" + "<br>" +
-                 "rhel-8-for-ppc64le-appstream-e4s-rpms" + "<br>" +
-                 "rhel-8-for-ppc64le-sap-solutions-e4s-rpms" + "<br>" +
-                 "rhel-8-for-ppc64le-sap-netweaver-e4s-rpms" +
-                 _haRepo;
-               document.getElementById("idSubsriptionManagerReposEnable").innerHTML =
-                 "subscription-manager repos \\<br>" +
-                 "--enable=\"" + "rhel-8-for-ppc64le-baseos-e4s-rpms" + "\" \\<br>" +
-                 "--enable=\"" + "rhel-8-for-ppc64le-appstream-e4s-rpms" + "\" \\<br>" +
-                 "--enable=\"" + "rhel-8-for-ppc64le-sap-solutions-e4s-rpms" + "\" \\<br>" +
-                 "--enable=\"" + "rhel-8-for-ppc64le-sap-netweaver-e4s-rpms" + "\"" +
-                 _haText;
+               if (vRHEL != "8.6") {
+                  document.getElementById("idRepos").innerHTML =
+                    "rhel-8-for-ppc64le-baseos-e4s-rpms" + "<br>" +
+                    "rhel-8-for-ppc64le-appstream-e4s-rpms" + "<br>" +
+                    "rhel-8-for-ppc64le-sap-solutions-e4s-rpms" + "<br>" +
+                    "rhel-8-for-ppc64le-sap-netweaver-e4s-rpms" +
+                    _haRepo;
+                  document.getElementById("idSubsriptionManagerReposEnable").innerHTML =
+                    "subscription-manager repos \\<br>" +
+                    "--enable=\"" + "rhel-8-for-ppc64le-baseos-e4s-rpms" + "\" \\<br>" +
+                    "--enable=\"" + "rhel-8-for-ppc64le-appstream-e4s-rpms" + "\" \\<br>" +
+                    "--enable=\"" + "rhel-8-for-ppc64le-sap-solutions-e4s-rpms" + "\" \\<br>" +
+                    "--enable=\"" + "rhel-8-for-ppc64le-sap-netweaver-e4s-rpms" + "\"" +
+                    _haText;
+               }
             }
          }
          else if (vRHEL == "8.3" || vRHEL == "8.5") {
@@ -1372,6 +1420,9 @@ function displayResults() {
          else if (vRHEL == "8.5") {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-348</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available; support ends April 30, 2022</a>";
          }
+//        else if (vRHEL == "8.6") {
+//           document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: 4.18.0-372</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not required</a>";
+//        }
          _baseos="-baseos";
          _appstream="-appstream";
          _sap_netweaver="-sap-netweaver";
