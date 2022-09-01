@@ -88,6 +88,8 @@
 //       Mon Aug 15 2022
 // v1.5.37: SAP note 2378962: last SPS06 rev is now 064.
 //       Wed Aug 17 2022
+// v1.5.38: Removed subscription-manager commands for last RHEL minor releases
+//       Thu Sep 01 2022
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -259,6 +261,7 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.35</a>." + "<br>" +
 "HANA 1.0 <b>SPS12</b>: gcc 4 ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">No package compat-sap-c++-* required.</a><br>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.4</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL6\">Kernel Version: 2.6.32-754</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S and EUS not available and not required; end of Maintenance Support 2 November 30, 2020; end of Extended Life-cycle Support June 30, 2024</a>";
+            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
          }
          if (vHA == "HA") {
             document.getElementById("idResources").innerHTML +=
@@ -362,6 +365,7 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.35</a>." + "<br>" +
 "HANA 1.0 <b>SPS12</b>: gcc 4 ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">No package compat-sap-c++-* required.</a><br>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1160</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S and EUS not available and not required; end of Maintenance Support June 30, 2024; end of Extended Life-cycle Support TBD</a>";
+            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
          }
          if (vCloud == "no Cloud") {
             _rhui=""
@@ -588,6 +592,7 @@ function displayResults() {
 "<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: " + last_hana2_sps05 + "</a>." + "<br>" +
 "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_req + ".<br>";
                   document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 4.8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL7\">Kernel Version: 3.10.0-1160</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Life_Cycle_Dates\">E4S and EUS not available and not required; end of Maintenance Support June 30, 2024; end of Extended Life-cycle Support TBD</a>";
+                  document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
                }
                if (vCloud == "no Cloud") {
                    _rhui=""
