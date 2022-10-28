@@ -92,6 +92,8 @@
 //       Thu Sep 01 2022
 // v1.5.39: SAP note 2378962: last SPS05 rev is now 059.05.
 //       Fri Sep 16 2022
+// v1.5.40: SAP note 2378962: last SPS06 rev is now 065.
+//       Fri Oct 28 2022
 
 function displaySelections() { 
   var elem = document.getElementsByName('sapSelect'); 
@@ -127,7 +129,7 @@ function displayResults() {
    last_hana2_sps03 = "HANA 2.0 SPS03 rev 37.07";
    last_hana2_sps04 = "HANA 2.0 SPS04 rev 48.06";
    last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.05";
-   last_hana2_sps06 = "HANA 2.0 SPS06 rev 64";
+   last_hana2_sps06 = "HANA 2.0 SPS06 rev 65";
    gcc5_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2338763\">gcc 5</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-5</a>";
    gcc6_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2455582\">gcc 6</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-6</a>";
    gcc7_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-7</a>";
