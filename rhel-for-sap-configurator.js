@@ -12,7 +12,7 @@
 //       Tue 12 May 2020
 // v1.4: added HANA 1.0; minor corrections
 //       Thu 14 May 2020
-// v1.5: added GCC versions for HANA 2.0 and HANA 1.0
+// v1.5: added gcc versions for HANA 2.0 and HANA 1.0
 //       Thu 14 May 2020
 // v1.5.1: added RHEL HA document to the "Resources:" section
 //       Sat 13 Jun 2020
@@ -28,7 +28,7 @@
 //       Tue 08 Jul 2020
 // v1.5.7: added RHEL 7.7
 //       Mon 28 Jul 2020
-// v1.5.8: added GCC for RHEL; changed min required due to SAP note 2812427
+// v1.5.8: added gcc for RHEL; changed min required due to SAP note 2812427
 //       Mon 28 Jul 2020
 // v1.5.9: implemented the recent changes to SAP note 2378962
 //       Fri 21 Aug 2020
