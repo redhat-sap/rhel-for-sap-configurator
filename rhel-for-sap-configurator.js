@@ -102,6 +102,8 @@
 //       Thu Dec 22 2022
 // v1.5.44: SAP notes 2235581 and 3108302: SAP HANA support for RHEL 9
 //       Fri Jan 27 2023
+// v1.5.45: Fix compat-sap-c++ statements for HANA on RHEL 9
+//       Fri Feb 17 2023
 
 function displaySelections() {
    var elem = document.getElementsByName('sapSelect');
@@ -174,9 +176,11 @@ function displayResults() {
    gcc5_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2338763\">gcc 5</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-5</a>";
    gcc6_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2455582\">gcc 6</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-6</a>";
    gcc7_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-7</a>";
-   gcc7_compat_sap_not_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">No package compat-sap-c++-* required</a>";
+   gcc7_compat_sap_not_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2593824\">gcc 7</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">No package compat-sap-c++* required</a>";
    gcc9_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-9</a>";
+   gcc9_compat_sap_not_req = "<a href=\"https://launchpad.support.sap.com/#/notes/2886607\">gcc 9</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">No package compat-sap-c++-* required</a>";
    gcc10_compat_sap_req = "<a href=\"https://launchpad.support.sap.com/#/notes/3018133\">gcc 10</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">Install package compat-sap-c++-10</a>";
+   gcc10_compat_sap_not_req = "<a href=\"https://launchpad.support.sap.com/#/notes/3018133\">gcc 10</a> ---&gt; <a href=\"https://launchpad.support.sap.com/#/notes/3057467\">No package compat-sap-c++-* required</a>";
 //   getArchIndex()
 //   getRHELIndex()
 //   getSAPIndex()
@@ -1237,7 +1241,7 @@ function displayResults() {
                if (vArch == "x86_64") {
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 SPS05 rev 59.04 and newer and SPS06 rev 63 and newer</a>" + ".&nbsp;" +
 "<a href=\"https://launchpad.support.sap.com/#/notes/2378962\">Latest rev: " + last_hana2_sps06 + "</a>." + "<br>" +
-"HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_req + ". <b>SPS06</b>: " + gcc10_compat_sap_req + ".<br>";
+"HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS06</b>: " + gcc10_compat_sap_not_req + ".<br>";
                   document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>gcc 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel_90 + "</a>. " +
 "<a href=\"https://launchpad.support.sap.com/#/notes/3108302\">Minimum required: 5.14.0-70.22.1.el9_0</a>. " +
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">E4S available; support ends May 31, 2026</a>";
