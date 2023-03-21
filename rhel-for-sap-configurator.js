@@ -106,6 +106,8 @@
 //       Fri Feb 17 2023
 // v1.5.46: Replace "gcc" by "GCC"; some changes to variable assignments
 //       Fri Feb 17 2023
+// v1.5.47: SAP note 2378962: last SPS06 rev is now 067. Last SPS05 rev is now 059.07.
+//       Tue Mar 21 2023
 
 function displaySelections() {
    var elem = document.getElementsByName('sapSelect');
@@ -141,8 +143,8 @@ function displayResults() {
    _haText = "<br><br>";
    last_hana2_sps03 = "HANA 2.0 SPS03 rev 37.07";
    last_hana2_sps04 = "HANA 2.0 SPS04 rev 48.06";
-   last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.06";
-   last_hana2_sps06 = "HANA 2.0 SPS06 rev 66";
+   last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.07";
+   last_hana2_sps06 = "HANA 2.0 SPS06 rev 67";
    e4s_80 = "E4S available";
    e4s_81 = "E4S not available";
    e4s_82 = "E4S available";
