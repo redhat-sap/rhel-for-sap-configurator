@@ -1,0 +1,26 @@
+// HANA 2.0 RHEL 9.2 not yet supported template
+            if (vRHEL == "9.2") {
+               document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel_92 + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_92 + "; support ends " + end_of_support_92 + "</a>";
+               document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
+               document.getElementById("idSubscription").innerHTML = "";
+               document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
+               document.getElementById("idRepos").innerHTML = "";
+               document.getElementById("titleCommands").innerHTML = "";
+               document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+               document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+            }
+
+// HANA 2.0 RHEL 9.x not supported template
+            if (vRHEL == "9.3") {
+               document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel_93 + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_93 + "; support ends " + end_of_support_93 + "</a>";
+               document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
+               document.getElementById("idSubscription").innerHTML = "";
+               document.getElementById("titleRepos").innerHTML = vSAP + " is not supported for RHEL " + vRHEL + ".";
+               document.getElementById("idRepos").innerHTML = "";
+               document.getElementById("titleCommands").innerHTML = "";
+               document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+               document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+            }
+
