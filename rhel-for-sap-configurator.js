@@ -112,6 +112,8 @@
 //       Fri Apr 14 2023
 // v1.5.49: Added RHEL 9.2.
 //       Mon May 15 2023
+// v1.5.50: Added RHEL 8.8.
+//       Mon May 16 2023
 
 function displaySelections() {
    var elem = document.getElementsByName('sapSelect');
@@ -188,6 +190,7 @@ function displayResults() {
    rhel_kernel_85 = "4.18.0-348";
    rhel_kernel_86 = "4.18.0-372.9.1";
    rhel_kernel_87 = "4.18.0-425.3.1";
+   rhel_kernel_88 = "4.18.0-477.10.1";
    rhel_kernel_90 = "5.14.0-70.13.1.el9_0";
    rhel_kernel_91 = "5.14.0-162.6.1.el9_1";
    rhel_kernel_92 = "5.14.0-284.11.1.el9_2";
@@ -265,8 +268,10 @@ function displayResults() {
    document.getElementById("id_85").disabled = false;
    document.getElementById("id_86").disabled = false;
    document.getElementById("id_87").disabled = false;
+   document.getElementById("id_88").disabled = false;
    document.getElementById("id_90").disabled = false;
    document.getElementById("id_91").disabled = false;
+   document.getElementById("id_92").disabled = false;
    document.getElementById("id_Cloud_on").disabled = false;
    if (vArch == "ppc64le") {
       document.getElementById("id_72").disabled = true;
@@ -287,8 +292,10 @@ function displayResults() {
       document.getElementById("id_85").disabled = true;
       document.getElementById("id_86").disabled = true;
       document.getElementById("id_87").disabled = true;
+      document.getElementById("id_88").disabled = true;
       document.getElementById("id_90").disabled = true;
       document.getElementById("id_91").disabled = true;
+      document.getElementById("id_92").disabled = true;
       if (vRHELmajor == "6") {
 // HANA 1.0 RHEL 6.x
          document.getElementById("id_Cloud_on").disabled = true;
@@ -1237,6 +1244,19 @@ function displayResults() {
                  _haText;
             }
          }
+// HANA 2.0 RHEL 8.8 x86_64 and ppc64le
+         else if (vRHEL == "8.8") {
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: " + rhel_kernel_88 + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_88 + "; support ends " + end_of_support_88 + "</a>";
+            document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
+            document.getElementById("idSubscription").innerHTML = "";
+            document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
+            document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
+            document.getElementById("idRepos").innerHTML = "";
+            document.getElementById("titleCommands").innerHTML = "";
+            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+         }
          else if (vRHEL == "8.3" || vRHEL == "8.5" || vRHEL == "8.7") {
 // HANA 2.0 RHEL 8.3, 8.5, 8.7
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://launchpad.support.sap.com/#/notes/2235581\">HANA 2.0 is not supported for RHEL " + vRHEL + "</a>" + "<br><br>";
@@ -1793,6 +1813,9 @@ function displayResults() {
          else if (vRHEL == "8.7") {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: " + rhel_kernel_87 + "</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not available and not required; support ends " + end_of_support_87 + "</a>";
          }
+         else if (vRHEL == "8.8") {
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: " + rhel_kernel_88 + "</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not required; support for E4S ends " + end_of_support_88 + "</a>";
+         }
          _baseos="-baseos";
          _appstream="-appstream";
          _sap_netweaver="-sap-netweaver";
@@ -1863,9 +1886,10 @@ function displayResults() {
          }
       }
       else if (vRHELmajor == "9") {
+         document.getElementById("idResources").innerHTML =
+"<a href=\"https://launchpad.support.sap.com/#/notes/3108316\">SAP note 3108316</a> - Red Hat Enterprise Linux 9.x: Installation and Configuration" + "<br>";
          document.getElementById("id_ppc64").disabled = true;
          document.getElementById("idRemarks").innerHTML = "<br><br>";
-         document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
          if (vHA == "HA") {
             document.getElementById("idResources").innerHTML +=
 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
