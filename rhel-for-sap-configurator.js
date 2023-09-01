@@ -116,6 +116,9 @@
 //       Mon May 16 2023
 // v1.5.51: SAP note 2378962: last SPS06 rev is 067.01.
 //       Fri May 26 2023
+// v1.5.52: SAP note 2378962: last HANA SPS05 is rev 59.09. Last SPS06 rev is 067.03. Last SPS07 rev is 072.
+//       Fri Sep 01 2023
+
 
 function displaySelections() {
    var elem = document.getElementsByName('sapSelect');
@@ -153,9 +156,9 @@ function displayResults() {
    rhel_for_sap_solutions_subscription_ppc64le = "Red Hat Enterprise Linux for SAP Solutions for Power, LE"
    last_hana2_sps03 = "HANA 2.0 SPS03 rev 37.07";
    last_hana2_sps04 = "HANA 2.0 SPS04 rev 48.06";
-   last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.08";
-   last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.01";
-   last_hana2_sps07 = "HANA 2.0 SPS06 rev 70";
+   last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.09";
+   last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.03";
+   last_hana2_sps07 = "HANA 2.0 SPS06 rev 72";
    e4s_80 = "E4S available";
    e4s_81 = "E4S not available";
    e4s_82 = "E4S available";
