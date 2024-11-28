@@ -152,6 +152,8 @@
 //       Tue Sep 10 2024
 // v1.6.10: SAP note 2378962: last HANA SPS07 rev is now 079.01
 //       Mon Oct 21 2024
+// v1.6.11: SAP note 2235581: support for HANA SPS08 on RHEL 9
+//       Thu Nov 28 2024
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -203,6 +205,7 @@ function displayResults() {
    last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.14";
    last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.04";
    last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.01";
+   last_hana2_sps08 = "HANA 2.0 SPS08 rev 80.00";
    e4s_80 = "E4S available";
    e4s_81 = "E4S available";
    e4s_82 = "E4S available";
@@ -236,6 +239,7 @@ function displayResults() {
    end_of_support_92 = "May 31, 2027";
    end_of_support_93 = "April 30, 2024";
    end_of_support_94 = "April 30, 2028";
+   end_of_support_95 = "April 30, 2025";
    rhel_kernel = {
       "8.0": {
          "gcc": "8",
@@ -412,18 +416,31 @@ function displayResults() {
             "x86_64": "5.14.0-427.16.1.el9_4",
             "ppc64le": "5.14.0-427.16.1.el9_4"
          }
+      },
+      "9.5": {
+         "gcc": "11",
+         "initial_version": "5.14.0-503.11.1.el9_5",
+         "end_of_support": "April 30, 2025",
+         "support": "ends",
+         "e4s": "not available",
+         "min_version_for_hana": {
+            "x86_64": "N/A",
+            "ppc64le": "N/A"
+         }
       }
    };
-   gcc5_compat_sap_req = "<a href=\"https://me.sap.com/notes/2338763\">GCC 5</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install package compat-sap-c++-5</a>";
-   gcc6_compat_sap_req = "<a href=\"https://me.sap.com/notes/2455582\">GCC 6</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install package compat-sap-c++-6</a>";
-   gcc7_compat_sap_req = "<a href=\"https://me.sap.com/notes/2593824\">GCC 7</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install package compat-sap-c++-7</a>";
-   gcc7_compat_sap_not_req = "<a href=\"https://me.sap.com/notes/2593824\">GCC 7</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No package compat-sap-c++* required</a>";
-   gcc9_compat_sap_req = "<a href=\"https://me.sap.com/notes/2886607\">GCC 9</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install package compat-sap-c++-9</a>";
-   gcc9_compat_sap_not_req = "<a href=\"https://me.sap.com/notes/2886607\">GCC 9</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No package compat-sap-c++-* required</a>";
-   gcc10_compat_sap_req = "<a href=\"https://me.sap.com/notes/3018133\">GCC 10</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install package compat-sap-c++-10</a>";
-   gcc10_compat_sap_not_req = "<a href=\"https://me.sap.com/notes/3018133\">GCC 10</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No package compat-sap-c++-* required</a>";
-   gcc11_compat_sap_req = "<a href=\"https://me.sap.com/notes/3216146\">GCC 11</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install package compat-sap-c++-11</a>";
-   gcc11_compat_sap_not_req = "<a href=\"https://me.sap.com/notes/3211646\">GCC 11</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No package compat-sap-c++-* required</a>";
+   gcc5_compat_sap_req = "<a href=\"https://me.sap.com/notes/2338763\">GCC 5</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install compat-sap-c++-5</a>";
+   gcc6_compat_sap_req = "<a href=\"https://me.sap.com/notes/2455582\">GCC 6</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install compat-sap-c++-6</a>";
+   gcc7_compat_sap_req = "<a href=\"https://me.sap.com/notes/2593824\">GCC 7</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install compat-sap-c++-7</a>";
+   gcc7_compat_sap_not_req = "<a href=\"https://me.sap.com/notes/2593824\">GCC 7</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No compat-sap-c++* required</a>";
+   gcc9_compat_sap_req = "<a href=\"https://me.sap.com/notes/2886607\">GCC 9</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install compat-sap-c++-9</a>";
+   gcc9_compat_sap_not_req = "<a href=\"https://me.sap.com/notes/2886607\">GCC 9</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No compat-sap-c++-* required</a>";
+   gcc10_compat_sap_req = "<a href=\"https://me.sap.com/notes/3018133\">GCC 10</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install compat-sap-c++-10</a>";
+   gcc10_compat_sap_not_req = "<a href=\"https://me.sap.com/notes/3018133\">GCC 10</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No compat-sap-c++-* required</a>";
+   gcc11_compat_sap_req = "<a href=\"https://me.sap.com/notes/3216146\">GCC 11</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install compat-sap-c++-11</a>";
+   gcc11_compat_sap_not_req = "<a href=\"https://me.sap.com/notes/3216146\">GCC 11</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No compat-sap-c++-* required</a>";
+   gcc13_compat_sap_req = "<a href=\"https://me.sap.com/notes/3449186\">GCC 13</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">Install compat-sap-c++-13</a>";
+   gcc13_compat_sap_not_req = "<a href=\"https://me.sap.com/notes/3449186\">GCC 13</a> ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No compat-sap-c++-* required</a>";
 //   getArchIndex()
 //   getRHELIndex()
 //   getSAPIndex()
@@ -1523,27 +1540,27 @@ function displayResults() {
 // HANA 2.0 RHEL 9.0
             if (vRHEL == "9.0") {
                if (vArch == "x86_64") {
-                  document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS05 and SPS06 only, starting with rev 59.04 and rev 63</a>" + ".&nbsp;" +
-                    "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps06 + "</a>." + "<br>" +
-                    "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS06</b>: " + gcc10_compat_sap_not_req + ".<br>";
+                  document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS05 from rev 59.04, SPS06 from rev 63, and SPS07 from rev 70</a>" + ".&nbsp;" +
+                    "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps07 + "</a>." + "<br>" +
+                    "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS06</b>: " + gcc10_compat_sap_not_req + ". <b>SPS07</b>: " + gcc11_compat_sap_not_req + ".<br>";
                }
                else if (vArch == "ppc64le") {
-                  document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS05 only, starting with rev 59.08</a>" + ".&nbsp;" +
-                    "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps05 + "</a>." + "<br>" +
-                    "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ".<br>";
+                  document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS05 from rev 59.08, SPS06 from rev 67.01, and SPS07 from rev 70</a>" + ".&nbsp;" +
+                    "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps07 + "</a>." + "<br>" +
+                    "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS06</b>: " + gcc10_compat_sap_not_req + ". <b>SPS07</b>: " + gcc11_compat_sap_not_req + ".<br>";
                }
             }
 // HANA 2.0 RHEL 9.2
             else if (vRHEL == "9.2") {
-               document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS05: rev 59.09 and newer, SPS06: rev 67.02 and newer, and SPS07: rev 72 and newer</a>" + ".&nbsp;" +
-                 "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps07 + "</a>." + "<br>" +
-                 "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS06</b>: " + gcc10_compat_sap_not_req + ". <b>SPS07</b>: " + gcc11_compat_sap_not_req + ". <br>";
+               document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS05 from rev 59.09, SPS06 from rev 67.02, SPS07 from rev 72, and SPS08 from rev 80</a>" + ".&nbsp;" +
+                 "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps08 + "</a>." + "<br>" +
+                 "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS06</b>: " + gcc10_compat_sap_not_req + ". <b>SPS07</b>: " + gcc11_compat_sap_not_req + ". <b>SPS08</b>: " + gcc13_compat_sap_req + ".<br>";
             }
 // HANA 2.0 RHEL 9.4
             else if (vRHEL == "9.4") {
-               document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS05: rev 59.12 and newer and SPS07: rev 77 and newer</a>" + ".&nbsp;" +
-                 "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps07 + "</a>." + "<br>" +
-                 "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS07</b>: " + gcc11_compat_sap_not_req + ". <br>";
+               document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS05 from rev 59.12, SPS07 from rev 77, and SPS08 from rev 80</a>" + ".&nbsp;" +
+                 "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps08 + "</a>." + "<br>" +
+                 "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS07</b>: " + gcc11_compat_sap_not_req + ". <b>SPS08</b>: " + gcc13_compat_sap_req + ".<br>";
             }
 // HANA 2.0 RHEL 9.0 + RHEL 9.2 + RHEL 9.4
             document.getElementById("idSubscription").innerHTML = "<a href=\"https://access.redhat.com/solutions/3082481\">" + rhel_for_sap_solutions_subscription[vArch] + "</a>";
