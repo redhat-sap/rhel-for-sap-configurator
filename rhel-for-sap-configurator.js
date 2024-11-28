@@ -154,6 +154,8 @@
 //       Mon Oct 21 2024
 // v1.6.11: SAP note 2235581: support for HANA SPS08 on RHEL 9
 //       Thu Nov 28 2024
+// v1.6.12: fixed E4S description for RHEL 9.4
+//       Thu Nov 28 2024
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -267,7 +269,7 @@ function displayResults() {
          "gcc": "8",
          "initial_version": "4.18.0-193",
          "end_of_support": "April 30, 2024",
-         "support": "ends",
+         "support": "ended",
          "e4s": "available",
          "min_version_for_hana": {
             "x86_64": "4.18.0-193.40.1.el8_2",
@@ -399,7 +401,7 @@ function displayResults() {
          "gcc": "11",
          "initial_version": "5.14.0-362.8.1.el9_3",
          "end_of_support": "April 30, 2024",
-         "support": "ends",
+         "support": "ended",
          "e4s": "not available",
          "min_version_for_hana": {
             "x86_64": "N/A",
@@ -411,7 +413,7 @@ function displayResults() {
          "initial_version": "5.14.0-427.13.1.el9_4",
          "end_of_support": "April 30, 2028",
          "support": "ends",
-         "e4s": "not available",
+         "e4s": "available",
          "min_version_for_hana": {
             "x86_64": "5.14.0-427.16.1.el9_4",
             "ppc64le": "5.14.0-427.16.1.el9_4"
