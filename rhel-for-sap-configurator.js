@@ -156,6 +156,8 @@
 //       Thu Nov 28 2024
 // v1.6.12: fixed E4S description for RHEL 9.4
 //       Thu Nov 28 2024
+// v1.6.13: SAP note 2378962: last HANA SPS08 rev is now 081.00, last HANA SPS05 rev is now 059.15.
+//       Thu Dec 12 2024
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -204,10 +206,10 @@ function displayResults() {
    };
    last_hana2_sps03 = "HANA 2.0 SPS03 rev 37.07";
    last_hana2_sps04 = "HANA 2.0 SPS04 rev 48.06";
-   last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.14";
+   last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.15";
    last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.04";
    last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.01";
-   last_hana2_sps08 = "HANA 2.0 SPS08 rev 80.00";
+   last_hana2_sps08 = "HANA 2.0 SPS08 rev 81.00";
    e4s_80 = "E4S available";
    e4s_81 = "E4S available";
    e4s_82 = "E4S available";
