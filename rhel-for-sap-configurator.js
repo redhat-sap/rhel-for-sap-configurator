@@ -166,6 +166,8 @@
 //       Tue Apr  1 2025
 // v1.7.0: New RHEL releases 10.0 and 9.6. SAP note 2378962: last HANA SPS08 rev is 085.00, last HANA SPS07 rev is 079.04.
 //       Wed May 21 2025
+// v1.8.0: SAP note 2378962: last HANA SPS07 rev is 079.05.
+//       Thu Jun 12 2025
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -216,7 +218,7 @@ function displayResults() {
    last_hana2_sps04 = "HANA 2.0 SPS04 rev 48.06";
    last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.17";
    last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.04";
-   last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.04";
+   last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.05";
    last_hana2_sps08 = "HANA 2.0 SPS08 rev 85.00";
    e4s_80 = "E4S available";
    e4s_81 = "E4S available";
