@@ -170,6 +170,8 @@
 //       Thu Jun 12 2025
 // v1.9.0: SAP note 2378962: last HANA SPS05 rev is 059.18.
 //       Wed Jun 18 2025
+// v1.9.1: Bug fix for wrong link to SAP note 3108302
+//       Wed Jul  9 2025
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -1636,7 +1638,7 @@ function displayResults() {
                document.getElementById("idResources").innerHTML =
                  "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
                  "<a href=\"https://me.sap.com/notes/3108316\">SAP note 3108316</a> - Red Hat Enterprise Linux 9.x: Installation and Configuration" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/2777782\">SAP note 3108302</a> - SAP HANA DB: Recommended OS settings for RHEL 9" + "<br>";
+                 "<a href=\"https://me.sap.com/notes/3108302\">SAP note 3108302</a> - SAP HANA DB: Recommended OS settings for RHEL 9" + "<br>";
                if (vHA == "HA") {
                   document.getElementById("idResources").innerHTML +=
                     "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" +
@@ -1653,7 +1655,7 @@ function displayResults() {
                  "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
                  "<a href=\"https://me.sap.com/notes/2055470\">SAP note 2055470</a> - HANA on POWER Planning and Installation Specifics - Central Note" + "<br>" +
                  "<a href=\"https://me.sap.com/notes/3108316\">SAP note 3108316</a> - Red Hat Enterprise Linux 9.x: Installation and Configuration" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/2777782\">SAP note 3108302</a> - SAP HANA DB: Recommended OS settings for RHEL 9" + "<br>";
+                 "<a href=\"https://me.sap.com/notes/3108302\">SAP note 3108302</a> - SAP HANA DB: Recommended OS settings for RHEL 9" + "<br>";
                if (vHA == "HA") {
                   document.getElementById("idResources").innerHTML +=
                  "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" +
