@@ -174,6 +174,9 @@
 //       Wed Jul  9 2025
 // v1.10.0: SAP note 2378962: last HANA SPS08 rev is 086.00.
 //       Wed Jul  9 2025
+// v1.11.0: SAP note 2235581: support for HANA on RHEL 9.6 on x86_64 and ppc64le
+//       Mon Aug 18 2025
+
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -1576,7 +1579,8 @@ function displayResults() {
          }
          else if (vRHEL == "9.0" ||
                   vRHEL == "9.2" ||
-                  vRHEL == "9.4") {
+                  vRHEL == "9.4" ||
+                  vRHEL == "9.6") {
             document.getElementById("id_Repo_type_e4s").disabled = false;
             document.getElementById("id_Repo_type_eus").disabled = false;
 // HANA 2.0 RHEL 9.0
@@ -1604,7 +1608,13 @@ function displayResults() {
                  "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps08 + "</a>." + "<br>" +
                  "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS07</b>: " + gcc11_compat_sap_not_req + ". <b>SPS08</b>: " + gcc13_compat_sap_req + ".<br>";
             }
-// HANA 2.0 RHEL 9.0 + RHEL 9.2 + RHEL 9.4
+// HANA 2.0 RHEL 9.6
+            else if (vRHEL == "9.6") {
+               document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS05 from rev 59.17, SPS07 from rev 77.04, and SPS08 from rev 85</a>" + ".&nbsp;" +
+                 "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps08 + "</a>." + "<br>" +
+                 "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS07</b>: " + gcc11_compat_sap_not_req + ". <b>SPS08</b>: " + gcc13_compat_sap_req + ".<br>";
+            }
+// HANA 2.0 RHEL 9.0 + RHEL 9.2 + RHEL 9.4 + RHEL 9.6
             document.getElementById("idSubscription").innerHTML = "<a href=\"https://access.redhat.com/solutions/3082481\">" + rhel_for_sap_solutions_subscription[vArch] + "</a>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC " +
               rhel_kernel[vRHEL].gcc +
@@ -1682,20 +1692,20 @@ function displayResults() {
               _haText;
          }
 // HANA 2.0 RHEL 9.6 not yet supported
-         else if (vRHEL == "9.6") {
-            document.getElementById("id_Repo_type_e4s").disabled = false;
-            document.getElementById("id_Repo_type_eus").disabled = false;
-            document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 is not yet supported for RHEL " + vRHEL + "</a>" + "<br><br>";
-            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
-"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_96 + "; support ends " + end_of_support_94 + "</a>";
-            document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
-            document.getElementById("idSubscription").innerHTML = "";
-            document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
-            document.getElementById("idRepos").innerHTML = "";
-            document.getElementById("titleCommands").innerHTML = "";
-            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
-            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
-         }
+//         else if (vRHEL == "9.6") {
+//            document.getElementById("id_Repo_type_e4s").disabled = false;
+//            document.getElementById("id_Repo_type_eus").disabled = false;
+//            document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 is not yet supported for RHEL " + vRHEL + "</a>" + "<br><br>";
+//            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
+//"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_96 + "; support ends " + end_of_support_94 + "</a>";
+//            document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
+//            document.getElementById("idSubscription").innerHTML = "";
+//            document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
+//            document.getElementById("idRepos").innerHTML = "";
+//            document.getElementById("titleCommands").innerHTML = "";
+//            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+//            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+//         }
          else if (vRHEL == "9.1" ||
                   vRHEL == "9.3" ||
                   vRHEL == "9.5") {
