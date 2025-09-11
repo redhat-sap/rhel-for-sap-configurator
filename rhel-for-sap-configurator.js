@@ -180,6 +180,8 @@
 //       Thu Aug 28 2025
 // v1.13.0: SAP note 2378962: last HANA SPS08 rev is 087.00.
 //       Thu Sep  4 2025
+// v1.14.0: SAP note 2378962: last HANA SPS05 rev is 059.19.
+//       Thu Sep 11 2025
 
 
 function displaySelections() { // used for debugging
@@ -229,7 +231,7 @@ function displayResults() {
    };
    last_hana2_sps03 = "HANA 2.0 SPS03 rev 37.07";
    last_hana2_sps04 = "HANA 2.0 SPS04 rev 48.06";
-   last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.18";
+   last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.19";
    last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.04";
    last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.06";
    last_hana2_sps08 = "HANA 2.0 SPS08 rev 87.00";
