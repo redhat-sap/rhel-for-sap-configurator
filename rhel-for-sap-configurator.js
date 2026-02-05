@@ -190,6 +190,8 @@
 //       Thu Jan  8 2026
 // v1.18.0: SAP note 2235581: support for HANA on RHEL 10.2 on x86_64 and ppc64le
 //       Thu Feb  5 2026
+// v1.18.1: Added missing RHEL information for SAP NetWeaver on RHEL 9.4+ and 10.1
+//       Thu Feb  5 2026
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -2451,6 +2453,28 @@ function displayResults() {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_93 + "; support ends " + end_of_support_93 + "</a>";
          }
+         else if (vRHEL == "9.4") {
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_94 + "; support ends " + end_of_support_94 + "</a>";
+         }
+         else if (vRHEL == "9.5") {
+            document.getElementById("id_Repo_type_e4s").disabled = true;
+            document.getElementById("id_Repo_type_eus").disabled = true;
+            document.getElementById("id_Repo_type_normal").checked = true;
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_95 + "; support ends " + end_of_support_95 + "</a>";
+         }
+         else if (vRHEL == "9.6") {
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_96 + "; support ends " + end_of_support_96 + "</a>";
+         }
+         else if (vRHEL == "9.7") {
+            document.getElementById("id_Repo_type_e4s").disabled = true;
+            document.getElementById("id_Repo_type_eus").disabled = true;
+            document.getElementById("id_Repo_type_normal").checked = true;
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_97 + "; support ends " + end_of_support_97 + "</a>";
+         }
       }
       else if (vRHELmajor == "10") {
          if (vArch == "s390x") {document.getElementById("id_Repo_type_e4s").disabled = true}
@@ -2496,6 +2520,13 @@ function displayResults() {
          if (vRHEL == "10.0") {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 14</b></a>. <a href=\"https://access.redhat.com/articles/3078\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\"> E4S not required; support for E4S ends " + end_of_support_100 + "</a>";
+         }
+         else if (vRHEL == "10.1") {
+            document.getElementById("id_Repo_type_e4s").disabled = true;
+            document.getElementById("id_Repo_type_eus").disabled = true;
+            document.getElementById("id_Repo_type_normal").checked = true;
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 14</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_101 + "; support ends " + end_of_support_101 + "</a>";
          }
       }
    }
