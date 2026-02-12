@@ -192,6 +192,8 @@
 //       Thu Feb  5 2026
 // v1.18.1: Added missing RHEL information for SAP NetWeaver on RHEL 9.4+ and 10.1
 //       Thu Feb  5 2026
+// v1.19.0: SAP note 2378962: last HANA SPS08 rev is 089.01.
+//       Thu Feb 12 2026
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -243,7 +245,7 @@ function displayResults() {
    last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.20";
    last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.04";
    last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.08";
-   last_hana2_sps08 = "HANA 2.0 SPS08 rev 89.00";
+   last_hana2_sps08 = "HANA 2.0 SPS08 rev 89.01";
    e4s_80 = "E4S available";
    e4s_81 = "E4S available";
    e4s_82 = "E4S available";
@@ -1813,6 +1815,8 @@ function displayResults() {
          }
 // HANA 2.0 RHEL 10.0
          else if (vRHEL == "10.0") {
+            document.getElementById("id_Repo_type_e4s").disabled = false;
+            document.getElementById("id_Repo_type_eus").disabled = false;
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">SPS07 from rev 79.08, and SPS08 from rev 89</a>" + ".&nbsp;" +
               "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps08 + "</a>." + "<br>" +
               "HANA 2.0 <b>SPS07</b>: " + gcc11_compat_sap_not_req + ". <b>SPS08</b>: " + gcc13_compat_sap_not_req + ".<br>";
@@ -1894,6 +1898,8 @@ function displayResults() {
          }
 // HANA 2.0 RHEL 10.1 not supported
          else if (vRHEL == "10.1") {
+            document.getElementById("id_Repo_type_e4s").disabled = true;
+            document.getElementById("id_Repo_type_eus").disabled = true;
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 is not supported for RHEL " + vRHEL + "</a>" + "<br><br>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 14</b></a>. <a href=\"https://access.redhat.com/articles/3078\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_101 + "; support ends " + end_of_support_101 + "</a>";
