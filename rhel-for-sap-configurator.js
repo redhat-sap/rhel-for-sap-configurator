@@ -198,6 +198,8 @@
 //       Tue Feb 17 2026
 // v1.20.0: SAP note 2378962: last HANA SPS07 rev is 079.09.
 //       Wed Apr  1 2026
+// v1.21.0: SAP note 2378962: last HANA SPS08 rev is 089.02.
+//       Wed Apr 14 2026
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -249,7 +251,7 @@ function displayResults() {
    last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.20";
    last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.04";
    last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.09";
-   last_hana2_sps08 = "HANA 2.0 SPS08 rev 89.01";
+   last_hana2_sps08 = "HANA 2.0 SPS08 rev 89.02";
    e4s_80 = "E4S available";
    e4s_81 = "E4S available";
    e4s_82 = "E4S available";
