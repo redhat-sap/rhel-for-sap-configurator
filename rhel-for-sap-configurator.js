@@ -202,6 +202,8 @@
 //       Wed Apr 14 2026
 // v1.22.0: SAP note 2378962: last HANA SPS08 rev is 089.03. Support duration for RHEL modified after 31-May-2026 has passed.
 //       Mon Jun  8 2026
+// v1.23.0: SAP note 2378962: last HANA SPS07 rev is 079.10. Add RHEL 10.2 and 9.8.
+//       Thu Jun 25 2026
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -252,7 +254,7 @@ function displayResults() {
    last_hana2_sps04 = "HANA 2.0 SPS04 rev 48.06";
    last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.20";
    last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.04";
-   last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.09";
+   last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.10";
    last_hana2_sps08 = "HANA 2.0 SPS08 rev 89.03";
    e4s_80 = "E4S available";
    e4s_81 = "E4S available";
@@ -273,8 +275,10 @@ function displayResults() {
    e4s_95 = "E4S not available";
    e4s_96 = "E4S available";
    e4s_97 = "E4S not available";
+   e4s_98 = "E4S available";
    e4s_100 = "E4S available";
    e4s_101 = "E4S not available";
+   e4s_102 = "E4S available";
    end_of_support_80  = "ended December 31, 2020";
    end_of_support_81  = "ended November 30, 2023";
    end_of_support_82  = "ended April 30, 2024";
@@ -294,8 +298,10 @@ function displayResults() {
    end_of_support_95  = "ended April 30, 2025";
    end_of_support_96  = "ends May 31, 2029";
    end_of_support_97  = "ended April 30, 2026";
+   end_of_support_98  = "ends May 31, 2030";
    end_of_support_100 = "ends May 31, 2029";
    end_of_support_101 = "ended April 30, 2026";
+   end_of_support_102 = "ends May 31, 2030";
    rhel_kernel = {
       "8.0": {
          "gcc": "8",
@@ -499,8 +505,19 @@ function displayResults() {
          "gcc": "11",
          "initial_version": "5.14.0-611.5.1.el9_7",
          "end_of_support": "April 30, 2026",
-         "support": "ends",
+         "support": "ended",
          "e4s": "not available",
+         "min_version_for_hana": {
+            "x86_64": "N/A",
+            "ppc64le": "N/A"
+         }
+      },
+      "9.8": {
+         "gcc": "11",
+         "initial_version": "5.14.0-687.5.1.el9_8",
+         "end_of_support": "May 31, 2030",
+         "support": "ends",
+         "e4s": "available",
          "min_version_for_hana": {
             "x86_64": "N/A",
             "ppc64le": "N/A"
@@ -521,8 +538,19 @@ function displayResults() {
          "gcc": "11",
          "initial_version": "6.12.0-124.8.1.el10_1",
          "end_of_support": "April 30, 2026",
-         "support": "ends",
+         "support": "ended",
          "e4s": "not available",
+         "min_version_for_hana": {
+            "x86_64": "N/A",
+            "ppc64le": "N/A"
+         }
+      },
+      "10.2": {
+         "gcc": "14",
+         "initial_version": "6.12.0-55.9.1.el10_0",
+         "end_of_support": "May 31, 2029",
+         "support": "ends",
+         "e4s": "available",
          "min_version_for_hana": {
             "x86_64": "N/A",
             "ppc64le": "N/A"
@@ -621,8 +649,10 @@ function displayResults() {
    document.getElementById("id_95").disabled = false;
    document.getElementById("id_96").disabled = false;
    document.getElementById("id_97").disabled = false;
+   document.getElementById("id_98").disabled = false;
    document.getElementById("id_100").disabled = false;
    document.getElementById("id_101").disabled = false;
+   document.getElementById("id_102").disabled = false;
    document.getElementById("id_Cloud_on").disabled = false;
    if (vArch == "ppc64le") {
       document.getElementById("id_72").disabled = true;
@@ -657,8 +687,10 @@ function displayResults() {
       document.getElementById("id_95").disabled = true;
       document.getElementById("id_96").disabled = true;
       document.getElementById("id_97").disabled = true;
+      document.getElementById("id_98").disabled = true;
       document.getElementById("id_100").disabled = true;
       document.getElementById("id_101").disabled = true;
+      document.getElementById("id_102").disabled = true;
       if (vRHELmajor == "6") {
 // HANA 1.0 RHEL 6.x
          document.getElementById("id_Cloud_on").disabled = true;
@@ -1593,19 +1625,6 @@ function displayResults() {
 //                 _haText;
             }
          }
-// HANA 2.0 RHEL 8.8 x86_64 and ppc64le
-//         else if (vRHEL == "8.8") {
-//            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: " + rhel_kernel_88 + "</a>. " +
-//"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_88 + "; support " + end_of_support_88 + "</a>";
-//            document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
-//            document.getElementById("idSubscription").innerHTML = "";
-//            document.getElementById("titleRHEL").innerHTML = "RHEL " + vRHEL + ": ";
-//            document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
-//            document.getElementById("idRepos").innerHTML = "";
-//            document.getElementById("titleCommands").innerHTML = "";
-//            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
-//            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
-//         }
          else if (vRHEL == "8.3" || vRHEL == "8.5" || vRHEL == "8.7" || vRHEL == "8.9") {
             document.getElementById("id_Repo_type_e4s").disabled = true;
             document.getElementById("id_Repo_type_eus").disabled = true;
@@ -1669,7 +1688,7 @@ function displayResults() {
                  "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps08 + "</a>." + "<br>" +
                  "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_not_req + ". <b>SPS07</b>: " + gcc11_compat_sap_not_req + ". <b>SPS08</b>: " + gcc13_compat_sap_req + ".<br>";
             }
-// HANA 2.0 RHEL 9.0 + RHEL 9.2 + RHEL 9.4 + RHEL 9.6
+// HANA 2.0 RHEL 9.0 + 9.2 + 9.4 + 9.6
             document.getElementById("idSubscription").innerHTML = "<a href=\"https://access.redhat.com/solutions/3082481\">" + rhel_for_sap_solutions_subscription[vArch] + "</a>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC " +
               rhel_kernel[vRHEL].gcc +
@@ -1747,20 +1766,20 @@ function displayResults() {
               _haText;
          }
 // HANA 2.0 RHEL 9.8 not yet supported
-//         else if (vRHEL == "9.8") {
-//            document.getElementById("id_Repo_type_e4s").disabled = false;
-//            document.getElementById("id_Repo_type_eus").disabled = false;
-//            document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 is not yet supported for RHEL " + vRHEL + "</a>" + "<br><br>";
-//            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
-//"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_98 + "; support " + end_of_support_94 + "</a>";
-//            document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
-//            document.getElementById("idSubscription").innerHTML = "";
-//            document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
-//            document.getElementById("idRepos").innerHTML = "";
-//            document.getElementById("titleCommands").innerHTML = "";
-//            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
-//            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
-//         }
+         else if (vRHEL == "9.8") {
+            document.getElementById("id_Repo_type_e4s").disabled = false;
+            document.getElementById("id_Repo_type_eus").disabled = false;
+            document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 is not yet supported for RHEL " + vRHEL + "</a>" + "<br><br>";
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_98 + "; support " + end_of_support_94 + "</a>";
+            document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
+            document.getElementById("idSubscription").innerHTML = "";
+            document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
+            document.getElementById("idRepos").innerHTML = "";
+            document.getElementById("titleCommands").innerHTML = "";
+            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+         }
          else if (vRHEL == "9.1" ||
                   vRHEL == "9.3" ||
                   vRHEL == "9.5" ||
@@ -1914,6 +1933,21 @@ function displayResults() {
             document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
             document.getElementById("idSubscription").innerHTML = "";
             document.getElementById("titleRepos").innerHTML = vSAP + " is not supported for RHEL " + vRHEL + ".";
+            document.getElementById("idRepos").innerHTML = "";
+            document.getElementById("titleCommands").innerHTML = "";
+            document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
+            document.getElementById("idSubsriptionManagerReposEnable").innerHTML = "";
+         }
+// HANA 2.0 RHEL 10.2 not yet supported
+         else if (vRHEL == "10.2") {
+            document.getElementById("id_Repo_type_e4s").disabled = false;
+            document.getElementById("id_Repo_type_eus").disabled = false;
+            document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 is not yet supported for RHEL " + vRHEL + "</a>" + "<br><br>";
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
+   "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_98 + "; support " + end_of_support_94 + "</a>";
+            document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
+            document.getElementById("idSubscription").innerHTML = "";
+            document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
             document.getElementById("idRepos").innerHTML = "";
             document.getElementById("titleCommands").innerHTML = "";
             document.getElementById("idSubsriptionManagerReleaseSet").innerHTML = "";
@@ -2489,6 +2523,10 @@ function displayResults() {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_97 + "; support " + end_of_support_97 + "</a>";
          }
+         else if (vRHEL == "9.8") {
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_98 + "; support " + end_of_support_98 + "</a>";
+         }
       }
       else if (vRHELmajor == "10") {
          if (vArch == "s390x") {document.getElementById("id_Repo_type_e4s").disabled = true}
@@ -2541,6 +2579,13 @@ function displayResults() {
             document.getElementById("id_Repo_type_normal").checked = true;
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 14</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
 "<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_101 + "; support " + end_of_support_101 + "</a>";
+         }
+         else if (vRHEL == "10.2") {
+            document.getElementById("id_Repo_type_e4s").disabled = false;
+            document.getElementById("id_Repo_type_eus").disabled = false;
+            document.getElementById("id_Repo_type_normal").checked = true;
+            document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 14</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_102 + "; support " + end_of_support_102 + "</a>";
          }
       }
    }
