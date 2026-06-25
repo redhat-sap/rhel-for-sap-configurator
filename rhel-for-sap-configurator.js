@@ -206,6 +206,8 @@
 //       Thu Jun 25 2026
 // v1.23.1: Fix some RHEL 10 related infos and links
 //       Thu Jun 25 2026
+// v1.23.2: Fix some more RHEL 10 related infos
+//       Thu Jun 25 2026
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -532,12 +534,12 @@ function displayResults() {
          "support": "ends",
          "e4s": "available",
          "min_version_for_hana": {
-            "x86_64": "N/A",
-            "ppc64le": "N/A"
+            "x86_64": "6.12.0-55.30.1.el10_0",
+            "ppc64le": "6.12.0-55.30.1.el10_0"
          }
       },
       "10.1": {
-         "gcc": "11",
+         "gcc": "14",
          "initial_version": "6.12.0-124.8.1.el10_1",
          "end_of_support": "April 30, 2026",
          "support": "ended",
