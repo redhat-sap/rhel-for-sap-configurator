@@ -214,6 +214,8 @@
 //       Tue Sep 15 2026
 // v1.26.0: SAP note 2378962: last HANA SPS07 rev is 079.11.
 //       Mon Oct 26 2026
+// v1.26.1: Various bug fixes
+//       Tue Oct 27 2026
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -558,7 +560,7 @@ function displayResults() {
       "10.2": {
          "gcc": "14",
          "initial_version": "6.12.0-211.7.1.el10_2",
-         "end_of_support": "May 31, 2029",
+         "end_of_support": "May 31, 2030",
          "support": "ends",
          "e4s": "available",
          "min_version_for_hana": {
@@ -1069,7 +1071,7 @@ function displayResults() {
                   if (vCloud == "no Cloud") {
                      _rhui_ext = "";
                   }
-  else {
+                  else {
                      _rhui_ext = "";
 //               _rhui_ext = "__7_DOT_4__x86_64";
                   }
@@ -1100,8 +1102,8 @@ function displayResults() {
 // HANA 2.0 x86_64 RHEL 7.7
                   document.getElementById("id_Cloud_on").disabled = true;
                   document.getElementById("id_Cloud_off").checked = true;
-  vCloud = "no Cloud";
-  _rhui_ext = "";
+                  vCloud = "no Cloud";
+                  _rhui_ext = "";
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS04 rev 48 and newer, up to HANA 2.0 SPS05</a>" + ".&nbsp;" +
 "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps05 + "</a>." + "<br>" +
 "HANA 2.0 <b>SPS04</b>: " + gcc7_compat_sap_req + ". <b>SPS05</b>: " + gcc9_compat_sap_req + ".<br>";
@@ -1116,8 +1118,8 @@ function displayResults() {
                   document.getElementById("id_Repo_type_normal").checked = true;
                   document.getElementById("id_Cloud_on").disabled = true;
                   document.getElementById("id_Cloud_off").checked = true;
-  vCloud = "no Cloud";
-  _rhui_ext = "";
+                  vCloud = "no Cloud";
+                  _rhui_ext = "";
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS05 only, starting with rev 54</a>" + ".&nbsp;" +
 "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps05 + "</a>." + "<br>" +
 "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_req + ".<br>";
@@ -1781,7 +1783,7 @@ function displayResults() {
             document.getElementById("id_Repo_type_eus").disabled = false;
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 is not yet supported for RHEL " + vRHEL + "</a>" + "<br><br>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 11</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL9\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. " +
-"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_98 + "; support " + end_of_support_94 + "</a>";
+"<a href=\"https://access.redhat.com/support/policy/updates/errata#Update_Services_for_SAP_Solutions\">" + e4s_98 + "; support " + end_of_support_98 + "</a>";
             document.getElementById("idResources").innerHTML = "<br><br><br><br><br>";
             document.getElementById("idSubscription").innerHTML = "";
             document.getElementById("titleRepos").innerHTML = vSAP + " is not yet supported for RHEL " + vRHEL + ".";
@@ -2472,6 +2474,21 @@ function displayResults() {
               "<a href=\"https://me.sap.com/notes/3108316\">SAP note 3108316</a> - Red Hat Enterprise Linux 9.x: Installation and Configuration" + "<br>";
          document.getElementById("id_ppc64").disabled = true;
          document.getElementById("idRemarks").innerHTML = "<br><br>";
+         if (vCloud == "no Cloud") {
+            _rhui=""
+            _rhui_ext = "";
+         }
+         else {
+            _rhui="-rhui"
+            _rhui_ext = "";
+//            _rhui_ext = "-" + vRHEL;
+         }
+         if (vDisable == "yes") {
+            _disableRepoText = disable_all_repos_before_enabling;
+         }
+         else {
+            _disableRepoText = "";
+         }
          if (vHA == "HA") {
             document.getElementById("idResources").innerHTML +=
               "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
@@ -2562,6 +2579,21 @@ function displayResults() {
               "<a href=\"https://me.sap.com/notes/3108316\">SAP note not yet published</a> - Red Hat Enterprise Linux 10.x: Installation and Configuration" + "<br>";
          document.getElementById("id_ppc64").disabled = true;
          document.getElementById("idRemarks").innerHTML = "<br><br>";
+         if (vCloud == "no Cloud") {
+            _rhui=""
+            _rhui_ext = "";
+         }
+         else {
+            _rhui="-rhui"
+            _rhui_ext = "";
+//            _rhui_ext = "-" + vRHEL;
+         }
+         if (vDisable == "yes") {
+            _disableRepoText = disable_all_repos_before_enabling;
+         }
+         else {
+            _disableRepoText = "";
+         }
          if (vHA == "HA") {
             document.getElementById("idResources").innerHTML +=
               "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
