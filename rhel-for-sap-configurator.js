@@ -220,6 +220,8 @@
 //       Tue Oct 27 2026
 // v1.27.0: SAP note 2235581: support for HANA on RHEL 10.2 on x86_64 and ppc64le
 //       Tue Oct 27 2026
+// v1.27.1: RHEL 10.2 is now the default selection for the RHEL release.
+//       Tue Oct 27 2026
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -1852,8 +1854,6 @@ function displayResults() {
             document.getElementById("id_Repo_type_e4s").disabled = false;
             document.getElementById("id_Repo_type_eus").disabled = false;
             if (vRHEL == "10.0") {
-               document.getElementById("id_Repo_type_e4s").disabled = false;
-               document.getElementById("id_Repo_type_eus").disabled = false;
                document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">SPS07 from rev 79.08, and SPS08 from rev 89</a>" + ".&nbsp;" +
                  "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps08 + "</a>." + "<br>" +
                  "HANA 2.0 <b>SPS07</b>: " + gcc11_compat_sap_not_req + ". <b>SPS08</b>: " + gcc13_compat_sap_not_req + ".<br>";
@@ -1871,8 +1871,6 @@ function displayResults() {
             }
 // HANA 2.0 RHEL 10.2
             else if (vRHEL == "10.2") {
-               document.getElementById("id_Repo_type_e4s").disabled = false;
-               document.getElementById("id_Repo_type_eus").disabled = false;
                document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">SPS07 from rev 79.11, and SPS08 from rev 89.05</a>" + ".&nbsp;" +
                  "<a href=\"https://me.sap.com/notes/2378962\">Latest rev: " + last_hana2_sps08 + "</a>." + "<br>" +
                  "HANA 2.0 <b>SPS07</b>: " + gcc11_compat_sap_not_req + ". <b>SPS08</b>: " + gcc13_compat_sap_not_req + ".<br>";
