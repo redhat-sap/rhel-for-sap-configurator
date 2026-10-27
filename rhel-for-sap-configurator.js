@@ -216,6 +216,8 @@
 //       Mon Oct 26 2026
 // v1.26.1: Various bug fixes
 //       Tue Oct 27 2026
+// v1.26.2: Most contents of idResources now defined as a var
+//       Tue Oct 27 2026
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -268,6 +270,40 @@ function displayResults() {
    last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.04";
    last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.11";
    last_hana2_sps08 = "HANA 2.0 SPS08 rev 89.05";
+   resources_nw_rhel6 = "<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" +
+"<a href=\"https://me.sap.com/notes/1496410\">SAP note 1496410</a> - Red Hat Enterprise Linux 6.x: Installation and Upgrade" + "<br>" +
+"<a href=\"https://me.sap.com/notes/2247020\">SAP note 2247020</a> - SAP HANA DB: Recommended OS settings for RHEL 6.7" + "<br>";
+   resources_nw_rhel7 = "<a href=\"https://access.redhat.com/solutions/3075991\">Red Hat KB 3075991</a> - How to subscribe SAP HANA systems to the Update Services for SAP Solutions" + "<br>" +
+"<a href=\"https://me.sap.com/notes/2002167\">SAP note 2002167</a> - Red Hat Enterprise Linux 7.x: Installation and Upgrade" + "<br>" +
+"<a href=\"https://me.sap.com/notes/2292690\">SAP note 2292690</a> - SAP HANA DB: Recommended OS settings for RHEL 7" + "<br>";
+   resources_nw_rhel8 = "<a href=\"https://me.sap.com/notes/2772999\">SAP note 2772999</a> - Red Hat Enterprise Linux 8.x: Installation and Configuration" + "<br>";
+   resources_nw_rhel9 = "<a href=\"https://me.sap.com/notes/3108316\">SAP note 3108316</a> - Red Hat Enterprise Linux 9.x: Installation and Configuration" + "<br>";
+   resources_nw_rhel10 = "<a href=\"https://me.sap.com/notes/3562909\">SAP note 3562909</a> - Red Hat Enterprise Linux 10.x: Installation and Configuration" + "<br>";
+   resources_hana_x_rhel6 = "";
+   resources_hana_x_rhel7 = "";
+   resources_hana_p_rhel7 = "";
+   resources_hana_x_rhel8 = "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/2772999\">SAP note 2772999</a> - Red Hat Enterprise Linux 8.x: Installation and Configuration" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/2777782\">SAP note 2777782</a> - SAP HANA DB: Recommended OS settings for RHEL 8" + "<br>";
+   resources_hana_p_rhel8 = "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/2055470\">SAP note 2055470</a> - HANA on POWER Planning and Installation Specifics - Central Note" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/2772999\">SAP note 2772999</a> - Red Hat Enterprise Linux 8.x: Installation and Configuration" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/2777782\">SAP note 2777782</a> - SAP HANA DB: Recommended OS settings for RHEL 8" + "<br>";
+   resources_hana_x_rhel9 = "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/3108316\">SAP note 3108316</a> - Red Hat Enterprise Linux 9.x: Installation and Configuration" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/3108302\">SAP note 3108302</a> - SAP HANA DB: Recommended OS settings for RHEL 9" + "<br>";
+   resources_hana_p_rhel9 = "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/2055470\">SAP note 2055470</a> - HANA on POWER Planning and Installation Specifics - Central Note" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/3108316\">SAP note 3108316</a> - Red Hat Enterprise Linux 9.x: Installation and Configuration" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/3108302\">SAP note 3108302</a> - SAP HANA DB: Recommended OS settings for RHEL 9" + "<br>";
+   resources_hana_x_rhel10 = "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/3562909\">SAP note 3562909</a> - Red Hat Enterprise Linux 10.x: Installation and Configuration" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/3562919\">SAP note 3562919</a> - SAP HANA DB: Recommended OS settings for RHEL 10" + "<br>";
+   resources_hana_p_rhel10 = "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/2055470\">SAP note 2055470</a> - HANA on POWER Planning and Installation Specifics - Central Note" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/3562909\">SAP note 3562909</a> - Red Hat Enterprise Linux 10.x: Installation and Configuration" + "<br>" +
+                 "<a href=\"https://me.sap.com/notes/3562919\">SAP note 3562919</a> - SAP HANA DB: Recommended OS settings for RHEL 10" + "<br>";
+   resources_ha = "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>";
    e4s_80 = "E4S available";
    e4s_81 = "E4S available";
    e4s_82 = "E4S available";
@@ -707,15 +743,12 @@ function displayResults() {
 // HANA 1.0 RHEL 6.x
          document.getElementById("id_Cloud_on").disabled = true;
          document.getElementById("id_Cloud_off").checked = true;
+         document.getElementById("idResources").innerHTML = resources_nw_rhel6;
          document.getElementById("idSubscription").innerHTML = "<a href=\"https://access.redhat.com/solutions/3082481\">" + rhel_for_sap_solutions_subscription[vArch] + "</a>";
          document.getElementById("idSubsriptionManagerReleaseSet").innerHTML =
          "subscription-manager release --set=" + vRHEL;
          if (vRHEL == "6.5") {
 // HANA 1.0 RHEL 6.5
-            document.getElementById("idResources").innerHTML =
-"<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" +
-"<a href=\"https://me.sap.com/notes/1496410\">SAP note 1496410</a> - Red Hat Enterprise Linux 6.x: Installation and Upgrade" + "<br>" +
-"<a href=\"https://me.sap.com/notes/2013638\">SAP note 2013638</a> - SAP HANA DB: Recommended OS settings for RHEL 6.5" + "<br>";
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 1.0 up to SPS11</a>" + ".&nbsp;" +
 "<a href=\"https://me.sap.com/notes/2021789\">Latest rev: HANA 1.0 SPS11 rev 112.07</a>." + "<br>" +
 "HANA 1.0 <b>SPS11</b>: GCC version unknown. <a href=\"https://me.sap.com/notes/3057467\">No package compat-sap-c++-* required.</a><br>";
@@ -723,10 +756,6 @@ function displayResults() {
          }
          if (vRHEL == "6.6") {
 // HANA 1.0 RHEL 6.6
-            document.getElementById("idResources").innerHTML =
-"<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" +
-"<a href=\"https://me.sap.com/notes/1496410\">SAP note 1496410</a> - Red Hat Enterprise Linux 6.x: Installation and Upgrade" + "<br>" +
-"<a href=\"https://me.sap.com/notes/2136965\">SAP note 2136965</a> - SAP HANA DB: Recommended OS settings for RHEL 6.6" + "<br>";
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 1.0 up to SPS11</a>" + ".&nbsp;" +
 "<a href=\"https://me.sap.com/notes/2021789\">Latest rev: HANA 1.0 SPS11 rev 112.07</a>." + "<br>" +
 "HANA 1.0 <b>SPS11</b>: GCC version unknown. <a href=\"https://me.sap.com/notes/3057467\">No package compat-sap-c++-* required.</a><br>";
@@ -734,10 +763,6 @@ function displayResults() {
          }
          if (vRHEL == "6.7") {
 // HANA 1.0 RHEL 6.7
-            document.getElementById("idResources").innerHTML =
-"<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" +
-"<a href=\"https://me.sap.com/notes/1496410\">SAP note 1496410</a> - Red Hat Enterprise Linux 6.x: Installation and Upgrade" + "<br>" +
-"<a href=\"https://me.sap.com/notes/2247020\">SAP note 2247020</a> - SAP HANA DB: Recommended OS settings for RHEL 6.7" + "<br>";
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 1.0 SPS11 and newer</a>" + ".&nbsp;" +
 "<a href=\"https://me.sap.com/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.35</a>." + "<br>" +
 "HANA 1.0 <b>SPS12</b>: GCC 4 ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No package compat-sap-c++-* required.</a><br>";
@@ -745,10 +770,6 @@ function displayResults() {
          }
          if (vRHEL == "6.10") {
 // HANA 1.0 RHEL 6.10
-            document.getElementById("idResources").innerHTML =
-"<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" +
-"<a href=\"https://me.sap.com/notes/1496410\">SAP note 1496410</a> - Red Hat Enterprise Linux 6.x: Installation and Upgrade" + "<br>" +
-"<a href=\"https://me.sap.com/notes/2694292\">SAP note 2694292</a> - SAP HANA DB: Recommended OS settings for RHEL 6.10" + "<br>";
             document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 1.0 SPS12 rev 122.23 and newer</a>" + ".&nbsp;" +
 "<a href=\"https://me.sap.com/notes/2021789\">Latest rev: HANA 1.0 SPS12 rev 122.35</a>." + "<br>" +
 "HANA 1.0 <b>SPS12</b>: GCC 4 ---&gt; <a href=\"https://me.sap.com/notes/3057467\">No package compat-sap-c++-* required.</a><br>";
@@ -762,8 +783,7 @@ function displayResults() {
             _disableRepoText = "";
          }
          if (vHA == "HA") {
-            document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+            document.getElementById("idResources").innerHTML += resources_ha +
 "<br>";
             _haRepo = "<br>" + "rhel-ha-for-rhel-6-server-rpms" + "<br>";
             _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-6-server-rpms" + "\"";
@@ -789,10 +809,7 @@ function displayResults() {
       else if (vRHELmajor == "7") {
 // HANA 1.0 RHEL 7.x
          _exs="e4s";
-         document.getElementById("idResources").innerHTML =
-"<a href=\"https://access.redhat.com/solutions/3075991\">Red Hat KB 3075991</a> - How to subscribe SAP HANA systems to the Update Services for SAP Solutions" + "<br>" +
-"<a href=\"https://me.sap.com/notes/2002167\">SAP note 2002167</a> - Red Hat Enterprise Linux 7.x: Installation and Upgrade" + "<br>" +
-"<a href=\"https://me.sap.com/notes/2292690\">SAP note 2292690</a> - SAP HANA DB: Recommended OS settings for RHEL 7" + "<br>"
+         document.getElementById("idResources").innerHTML = resources_nw_rhel7;
          document.getElementById("idSubscription").innerHTML = "<a href=\"https://access.redhat.com/solutions/3082481\">" + rhel_for_sap_solutions_subscription[vArch] + "</a>";
          document.getElementById("idSubsriptionManagerReleaseSet").innerHTML =
          "subscription-manager release --set=" + vRHEL;
@@ -892,8 +909,7 @@ function displayResults() {
             _rhui="-rhui"
          }
          if (vHA == "HA") {
-            document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+            document.getElementById("idResources").innerHTML += resources_ha +
 "<br>";
             _ha = "rhel-ha-for-rhel-7-server-" + _exs + _rhui + "-rpms";
             if (vRHEL == "7.9") {
@@ -1139,8 +1155,7 @@ function displayResults() {
                    _rhui="-rhui"
                }
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+                  document.getElementById("idResources").innerHTML += resources_ha +
 "<br>";
                   _ha = "rhel-ha-for-rhel-7-server" + vRepoType + _rhui + "-rpms" + _rhui_ext;
                   if (vRHEL == "7.9") {
@@ -1270,8 +1285,7 @@ function displayResults() {
                      _disableRepoText = "";
                   }
                   if (vHA == "HA") {
-                     document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>";
+                     document.getElementById("idResources").innerHTML += resources_ha;
                      _haRepo = "<br>" + "rhel-ha-for-rhel-7-server-for-power-le" + vRepoType + "-rpms" + "<br>";
                      _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-server-for-power-le" + vRepoType + "-rpms" + "\"";
                      if (vRHEL == "7.9") {
@@ -1340,8 +1354,7 @@ function displayResults() {
 //                  _rhui_ext = "__7_DOT_5__x86_64";
                }
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+                  document.getElementById("idResources").innerHTML += resources_ha +
 "<br>";
                   _ha = "rhel-ha-for-rhel-7-server-" + _exs + _rhui + "-rpms";
                   _haRepo = "<br>" + _ha + "<br>";
@@ -1395,8 +1408,7 @@ function displayResults() {
                   _disableRepoText = "";
                }
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>";
+                  document.getElementById("idResources").innerHTML += resources_ha;
                   _haRepo = "<br>" + "rhel-ha-for-rhel-7-server-for-power-le" + vRepoType + "-rpms" + "<br>";
                   _haText = " \\<br>" + "--enable=\"" + "rhel-ha-for-rhel-7-server-for-power-le" + vRepoType + "-rpms" + "\"";
                }
@@ -1443,10 +1455,7 @@ function displayResults() {
 // HANA 2.0 RHEL 8.0, 8.1, 8.2, 8.4, 8.6, 8.8, 8.10
             document.getElementById("id_Repo_type_e4s").disabled = false;
             document.getElementById("id_Repo_type_eus").disabled = false;
-            document.getElementById("idResources").innerHTML =
-              "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
-              "<a href=\"https://me.sap.com/notes/2772999\">SAP note 2772999</a> - Red Hat Enterprise Linux 8.x: Installation and Configuration" + "<br>" +
-              "<a href=\"https://me.sap.com/notes/2777782\">SAP note 2777782</a> - SAP HANA DB: Recommended OS settings for RHEL 8" + "<br>";
+            document.getElementById("idResources").innerHTML = resources_hana_x_rhel8;
             document.getElementById("id_ppc64").disabled = true;
             document.getElementById("idSubscription").innerHTML = "<a href=\"https://access.redhat.com/solutions/3082481\">" + rhel_for_sap_solutions_subscription[vArch] + "</a>";
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC " +
@@ -1545,8 +1554,7 @@ function displayResults() {
                        "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_req + ". <b>SPS07</b>: " + gcc11_compat_sap_req + ". <br>";
                }
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
-                    "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+                  document.getElementById("idResources").innerHTML += resources_ha +
 "<br>";
                }
                else {
@@ -1561,11 +1569,7 @@ function displayResults() {
             }
             else if (vArch == "ppc64le") {
 // HANA 2.0 ppc64le
-               document.getElementById("idResources").innerHTML =
-                 "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/2055470\">SAP note 2055470</a> - HANA on POWER Planning and Installation Specifics - Central Note" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/2772999\">SAP note 2772999</a> - Red Hat Enterprise Linux 8.x: Installation and Configuration" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/2777782\">SAP note 2777782</a> - SAP HANA DB: Recommended OS settings for RHEL 8" + "<br>";
+               document.getElementById("idResources").innerHTML = resources_hana_p_rhel8;
                if (vRHEL == "8.0") {
 // HANA 2.0 ppc64le RHEL 8.0
                   document.getElementById("idRemarks").innerHTML = "<a href=\"https://me.sap.com/notes/2235581\">HANA 2.0 SPS04 only, starting with rev 45</a>" + ".&nbsp;" +
@@ -1616,8 +1620,7 @@ function displayResults() {
                        "HANA 2.0 <b>SPS05</b>: " + gcc9_compat_sap_req + ". <b>SPS07</b>: " + gcc11_compat_sap_req + ". <br>";
                }
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
-                    "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>";
+                  document.getElementById("idResources").innerHTML += resources_ha;
                }
                else {
                   document.getElementById("idResources").innerHTML += "<br>";
@@ -1733,14 +1736,9 @@ function displayResults() {
                _disableRepoText = "";
             }
             if (vArch == "x86_64") {
-               document.getElementById("idResources").innerHTML =
-                 "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/3108316\">SAP note 3108316</a> - Red Hat Enterprise Linux 9.x: Installation and Configuration" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/3108302\">SAP note 3108302</a> - SAP HANA DB: Recommended OS settings for RHEL 9" + "<br>";
+               document.getElementById("idResources").innerHTML = resources_hana_x_rhel9;
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
-                    "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" +
-                    "<br>" +
+                  document.getElementById("idResources").innerHTML += resources_ha +
                     "<br>";
                }
                else {
@@ -1749,15 +1747,9 @@ function displayResults() {
                }
             }
             else if (vArch == "ppc64le") {
-               document.getElementById("idResources").innerHTML =
-                 "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/2055470\">SAP note 2055470</a> - HANA on POWER Planning and Installation Specifics - Central Note" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/3108316\">SAP note 3108316</a> - Red Hat Enterprise Linux 9.x: Installation and Configuration" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/3108302\">SAP note 3108302</a> - SAP HANA DB: Recommended OS settings for RHEL 9" + "<br>";
+               document.getElementById("idResources").innerHTML = resources_hana_p_rhel9;
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
-                 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" +
-                 "<br>";
+                  document.getElementById("idResources").innerHTML += resources_ha;
                }
                else {
                   document.getElementById("idResources").innerHTML += "<br>";
@@ -1891,14 +1883,9 @@ function displayResults() {
                _disableRepoText = "";
             }
             if (vArch == "x86_64") {
-               document.getElementById("idResources").innerHTML =
-                 "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/3562909\">SAP note 3562909</a> - Red Hat Enterprise Linux 10.x: Installation and Configuration" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/3562919\">SAP note 3562919</a> - SAP HANA DB: Recommended OS settings for RHEL 10" + "<br>";
+               document.getElementById("idResources").innerHTML = resources_hana_x_rhel10;
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
-                    "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" +
-                    "<br>" +
+                  document.getElementById("idResources").innerHTML += resources_ha +
                     "<br>";
                }
                else {
@@ -1907,15 +1894,9 @@ function displayResults() {
                }
             }
             else if (vArch == "ppc64le") {
-               document.getElementById("idResources").innerHTML =
-                 "<a href=\"https://access.redhat.com/solutions/4714781\">Red Hat KB 4714781</a> - How to subscribe to Update Services for SAP Solutions on RHEL 8 and RHEL 9" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/2055470\">SAP note 2055470</a> - HANA on POWER Planning and Installation Specifics - Central Note" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/3562909\">SAP note 3562909</a> - Red Hat Enterprise Linux 10.x: Installation and Configuration" + "<br>" +
-                 "<a href=\"https://me.sap.com/notes/3562919\">SAP note 3562919</a> - SAP HANA DB: Recommended OS settings for RHEL 10" + "<br>";
+               document.getElementById("idResources").innerHTML = resources_hana_p_rhel10;
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
-                 "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" +
-                 "<br>";
+                  document.getElementById("idResources").innerHTML += resources_ha;
                }
                else {
                   document.getElementById("idResources").innerHTML += "<br>";
@@ -2015,8 +1996,7 @@ function displayResults() {
          document.getElementById("id_ppc64le").disabled = true;
          if (vArch == "x86_64") {
             if (vHA == "HA") {
-               document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+               document.getElementById("idResources").innerHTML += resources_ha +
 "<br>" +
 "<br>";
                _haRepo = "<br>" + "rhel-ha-for-rhel-6-server-rpms" + "<br>";
@@ -2059,8 +2039,7 @@ function displayResults() {
                _disableRepoText = "";
             }
             if (vHA == "HA") {
-               document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+               document.getElementById("idResources").innerHTML += resources_ha +
 "<br>" +
 "<br>";
                _haRepo = "<br>" + "<br>";
@@ -2090,8 +2069,7 @@ function displayResults() {
                _disableRepoText = "";
             }
             if (vHA == "HA") {
-               document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+               document.getElementById("idResources").innerHTML += resources_ha +
 "<br>" +
 "<br>";
                _haRepo = "<br>" + "<br>";
@@ -2184,8 +2162,7 @@ function displayResults() {
                _disableRepoText = "";
             }
             if (vHA == "HA") {
-               document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+               document.getElementById("idResources").innerHTML += resources_ha +
 "<br>" +
 "<br>";
                _ha = "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui2 + "rpms";
@@ -2246,8 +2223,7 @@ function displayResults() {
                   _disableRepoText = "";
                }
                if (vHA == "HA") {
-                  document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+                  document.getElementById("idResources").innerHTML += resources_ha +
 "<br>" +
 "<br>";
                   _ha = "rhel-ha-for-rhel-7-server-" + vArch7 + "-" + _rhui + "rpms";
@@ -2282,8 +2258,7 @@ function displayResults() {
                _disableRepoText = "";
             }
             if (vHA == "HA") {
-               document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+               document.getElementById("idResources").innerHTML += resources_ha +
 "<br>" +
 "<br>";
                _ha = ""
@@ -2319,8 +2294,7 @@ function displayResults() {
                _disableRepoText = "";
             }
             if (vHA == "HA") {
-               document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+               document.getElementById("idResources").innerHTML += resources_ha +
 "<br>" +
 "<br>";
                _ha = "rhel-ha-for-rhel-7-" + vArch7 + "-" + _rhui + "rpms";
@@ -2348,8 +2322,7 @@ function displayResults() {
          document.getElementById("id_Repo_type_e4s").disabled = false;
          document.getElementById("id_Repo_type_eus").disabled = false;
          document.getElementById("id_ppc64").disabled = true;
-         document.getElementById("idResources").innerHTML =
-"<a href=\"https://me.sap.com/notes/2772999\">SAP note 2772999</a> - Red Hat Enterprise Linux 8.x: Installation and Configuration" + "<br>";
+         document.getElementById("idResources").innerHTML = resources_nw_rhel8;
          if (vRHEL == "8.0") {
             document.getElementById("idRHEL").innerHTML = "<a href=\"https://access.redhat.com/solutions/19458\"><b>GCC 8</b></a>. <a href=\"https://access.redhat.com/articles/3078#RHEL8\">Kernel Version: " + rhel_kernel[vRHEL].initial_version + "</a>. <a href=\"https://access.redhat.com/support/policy/updates/errata#Extended_Update_Support\">E4S not required; support for E4S " + end_of_support_80 + "</a>";
          }
@@ -2433,8 +2406,7 @@ function displayResults() {
             _disableRepoText = "";
          }
          if (vHA == "HA") {
-            document.getElementById("idResources").innerHTML +=
-"<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+            document.getElementById("idResources").innerHTML += resources_ha +
 "<br>" +
 "<br>" +
 "<br>";
@@ -2470,8 +2442,7 @@ function displayResults() {
          if (vArch == "s390x") {document.getElementById("id_Repo_type_e4s").disabled = true}
          else {document.getElementById("id_Repo_type_e4s").disabled = false}
          document.getElementById("id_Repo_type_eus").disabled = false;
-         document.getElementById("idResources").innerHTML =
-              "<a href=\"https://me.sap.com/notes/3108316\">SAP note 3108316</a> - Red Hat Enterprise Linux 9.x: Installation and Configuration" + "<br>";
+         document.getElementById("idResources").innerHTML = resources_nw_rhel9;
          document.getElementById("id_ppc64").disabled = true;
          document.getElementById("idRemarks").innerHTML = "<br><br>";
          if (vCloud == "no Cloud") {
@@ -2490,8 +2461,7 @@ function displayResults() {
             _disableRepoText = "";
          }
          if (vHA == "HA") {
-            document.getElementById("idResources").innerHTML +=
-              "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+            document.getElementById("idResources").innerHTML += resources_ha +
               "<br>" +
               "<br>" +
               "<br>";
@@ -2575,8 +2545,7 @@ function displayResults() {
          if (vArch == "s390x") {document.getElementById("id_Repo_type_e4s").disabled = true}
          else {document.getElementById("id_Repo_type_e4s").disabled = false}
          document.getElementById("id_Repo_type_eus").disabled = false;
-         document.getElementById("idResources").innerHTML =
-              "<a href=\"https://me.sap.com/notes/3108316\">SAP note not yet published</a> - Red Hat Enterprise Linux 10.x: Installation and Configuration" + "<br>";
+         document.getElementById("idResources").innerHTML = resources_nw_rhel10;
          document.getElementById("id_ppc64").disabled = true;
          document.getElementById("idRemarks").innerHTML = "<br><br>";
          if (vCloud == "no Cloud") {
@@ -2595,8 +2564,7 @@ function displayResults() {
             _disableRepoText = "";
          }
          if (vHA == "HA") {
-            document.getElementById("idResources").innerHTML +=
-              "<a href=\"https://access.redhat.com/articles/4079981\">Red Hat KB 4079981</a> - Supported HA Scenarios for SAP HANA, SAP S/4HANA, and SAP Netweaver" + "<br>" +
+            document.getElementById("idResources").innerHTML += resources_ha +
               "<br>" +
               "<br>" +
               "<br>";
