@@ -222,6 +222,8 @@
 //       Tue Oct 27 2026
 // v1.27.1: RHEL 10.2 is now the default selection for the RHEL release.
 //       Tue Oct 27 2026
+// v1.28.0: SAP note 2378962: last HANA SPS08 rev is 089.06.
+//       Wed Nov  4 2026
 
 function displaySelections() { // used for debugging
    var elem = document.getElementsByName('sapSelect');
@@ -273,7 +275,7 @@ function displayResults() {
    last_hana2_sps05 = "HANA 2.0 SPS05 rev 59.20";
    last_hana2_sps06 = "HANA 2.0 SPS06 rev 67.04";
    last_hana2_sps07 = "HANA 2.0 SPS07 rev 79.11";
-   last_hana2_sps08 = "HANA 2.0 SPS08 rev 89.05";
+   last_hana2_sps08 = "HANA 2.0 SPS08 rev 89.06";
    resources_nw_rhel6 = "<a href=\"https://access.redhat.com/solutions/1544043\">Red Hat KB 1544043</a> - How to subscribe RHEL 6/7 system to RHEL for SAP Channel?" + "<br>" +
 "<a href=\"https://me.sap.com/notes/1496410\">SAP note 1496410</a> - Red Hat Enterprise Linux 6.x: Installation and Upgrade" + "<br>" +
 "<a href=\"https://me.sap.com/notes/2247020\">SAP note 2247020</a> - SAP HANA DB: Recommended OS settings for RHEL 6.7" + "<br>";
